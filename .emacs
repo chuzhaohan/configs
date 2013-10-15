@@ -35,7 +35,7 @@
 ;;(setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
-(global-set-key "C-x C-r" 'recentf-open-files)
+(global-set-key "\C-x \C-r" 'recentf-open-files)
 
 ;; matlab.el
 ;;(add-to-list 'load-path "~/matlab-emacs/matlab.el")
