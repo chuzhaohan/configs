@@ -15,7 +15,7 @@
 ;; delete selection works
 (delete-selection-mode 1)
 
-;;
+;;allows many operations (like buffer switching and file navigation) to be enhanced with instant feedback among the completion choices. 
 (ido-mode t)
 
 ;; append directory to buffer name when multiple files with same name are opened
@@ -29,6 +29,14 @@
 ;; match parantheses
 (show-paren-mode t)
 
+;; recentf stuff - recently used files
+(require 'recentf)
+;; uncomment below line if using tramp
+;;(setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(global-set-key "C-x C-r" 'recentf-open-files)
+
 ;; matlab.el
 ;;(add-to-list 'load-path "~/matlab-emacs/matlab.el")
 ;;(require 'matlab-load)
@@ -38,3 +46,9 @@
 ;;  (defun my-matlab-mode-hook ()
 ;;    (setq fill-column 76))		; where auto-fill should wrap
 ;;(gloabl-font-lock-mode 1)
+
+;; org mode keybindings
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
