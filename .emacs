@@ -38,14 +38,17 @@
 (global-set-key "\C-x \C-r" 'recentf-open-files)
 
 ;; matlab.el
-;;(add-to-list 'load-path "~/matlab-emacs/matlab.el")
-;;(require 'matlab-load)
-
-;;  (setq matlab-indent-function-body t)  ; if you want function bodies indented
-;;  (setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
-;;  (defun my-matlab-mode-hook ()
-;;    (setq fill-column 76))		; where auto-fill should wrap
-;;(gloabl-font-lock-mode 1)
+(add-to-list 'load-path "~/.emacs.d/matlab-emacs/")
+(autoload 'matlab-mode "matlab" "Enter MATLAB mode." t)
+(setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
+(autoload 'matlab-shell "matlab" "Interactive MATLAB mode." t)
+(load-library "~/.emacs.d/matlab-emacs/matlab-load.el")
+(require 'matlab-load)
+  (setq matlab-indent-function-body t)  ; if you want function bodies indented
+  (setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
+  (defun my-matlab-mode-hook ()
+    (setq fill-column 76))		; where auto-fill should wrap
+(global-font-lock-mode 1)
 
 ;; org mode keybindings
 (global-set-key "\C-cl" 'org-store-link)
