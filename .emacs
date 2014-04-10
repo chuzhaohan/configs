@@ -1,3 +1,4 @@
+;;; Code:
 ;; share clipboard with X
 (setq x-select-enable-clipboard t
         x-select-enable-primary t
@@ -29,6 +30,9 @@
 ;; match parantheses
 (show-paren-mode t)
 
+;; line numbers by default
+(global-linum-mode 1)
+
 ;; recentf stuff - recently used files
 (require 'recentf)
 ;; uncomment below line if using tramp
@@ -56,3 +60,26 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 (setq org-log-done t)
+
+;; setup marmalade
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list 'package-archives 
+	       '("marmalade" .
+		 "http://marmalade-repo.org/packages/"))
+  (package-initialize)
+)
+
+;; syntax checking with flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; jedi mode
+(autoload 'jedi-setup "jedi" nil t)
+(add-hook 'python-mode-hook 'jedi-setup)
+
+;; auto-complete
+(require 'auto-complete)
+(global-auto-complete-mode t)
+(provide '.emacs)
+
+;;; .emacs ends here
