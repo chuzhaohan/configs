@@ -1,0 +1,28 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/deepak/.emacs.d/" . "personal/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/deepak/.emacs.d/personal/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "deepak.el"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/deepak/.emacs.d/personal/" (21334 48036 411220 851000) "./" "preload/" ".gitkeep" "../" "ac-comphist.dat" "matlab-emacs/" "deepak.el" "flycheck_deepak.el" "sources.txt" "elpa/" "auto-save-list/")
+
+ ("/home/deepak/.emacs.d/" (21334 48036 699228 531000) "CONTRIBUTING.md" "themes/" "./" "personal/" "sources.txt~" "prelude-modules.el" ".xauth/" "session.2a785d8d0-237f-4bde-bd6a-9f0e646adef2" "README.md" "prelude-modules.el~" "init.el" "modules/" "../" "session.23d1fff43-73dd-43f9-ba14-52d82c2bfaa6" "ac-comphist.dat" ".gitignore" "savefile/" "var/" "session.229a20a64-6875-4718-a06e-cf9172f4c8bc" "session.2aca7ad78-ff38-44d5-8dfd-16dafa57722e" ".git/" "projectile-bookmarks.eld" "session.26e96e30d-7624-40f8-99e6-30a992e501f4" "utils/" "session.2a9135798-485a-4bab-b5a5-272b2b7bc088" "sample/" "elpa/" "auto-save-list/" ".ssh/" "vendor/" "session.21a4d6c70-f9a7-4c6a-955b-35cda48957d7" "core/" "url/")
+
+ ("/home/deepak/" (21334 47935 712535 281000) "tumblr_static_native_indian_background_design-wide.jpg" "50-synaptics.conf" "state-2012-refund.pdf" "badminton.bash~" "launchy.ini" ".emacs.desktop" ".dropbox/" ".gnuplot_history" "dckey.asc" "history.db" "gits/" "stuff.txt" ".wine-pipelight/" ".hplip/" ".Skype/" ".rnd" "./" "PowerTOP.html" "TapNote/" "launchy.db" ".vimrc" "Dropbox/" ".dropbox-dist/" ".gervill/" "matlab_crash_dump.8128-1" ".gnupg/" ".erc/" "error.txt" "matlab_crash_dump.3843-1" "state-2011-refund.pdf" ".TeXworks/" ".cache/" ".screenlayout/" ".gtk-bookmarks" ".adobe/" ".xscreensaver" ".pki/" ".recentf" "screen-sendenv.py" "dead.letter" "pbsscript~" ".emacs.d.pre-prelude.tar" ".ICEauthority" "libraries/" "texmf/" "Audiobooks/" ".smpd" "shade_terminal.bash" "recschedule.txt" ".macromedia/" ".mtoolsrc~" ".gstreamer-0.10/" "Templates/" ".bash_logout" "Data/" ".dbus/" "Videos/" "recschedule.pdf" ".qalculate/" "shade_terminal.bash~" ".ipython/" ".profile" "README.md" "download_run.bash~" "Downloads/" "wdRMAmailer.pdf" "matlab_crash_dump.17911-1" ".gitk" ".emacs-places" ".anyconnect" ".pip/" "backups/" ".kde/" "download_run.bash" "badminton.bash" "install-support.ipynb" ".launchy/" "Pictures/" "../" ".xinputrc" "ac-comphist.dat" ".ncviewrc" ".fonts.conf~" ".ipynb_checkpoints/" ".ido.last~" ".texlive2013/" "wdRMAinfo.pdf" "pbsscript" ".gconf/" "jabref.xml" ".gimp-2.8/" ".java/" ".icedtea/" "51-local.conf" "update.bash~" "netcdfblog-chunking.pdf" "alsa-info.sh" ".bashrc" "org/" ".tuxguitar-1.2/" "backup/" ".emacs~" ".fwbackups/" ".purple/" ".enthought/" ".mtoolsrc" ".gphoto/" "python/" ".bashrc~" ".recentf~" "compiz.profile" ".xsession-errors" ".matplotlib/" ".git/" "texupdate.bash" "weby-icon-cache/" ".thunderbird/" "pathdef.m" ".gitconfig~" ".ido.last" "texput.log" ".cvspass" ".lesshst" ".xinitrc~" "profiles.ini" ".mozilla/" "Sys/" "lgpanel.icc" ".gnome2/" "Music/" ".git-credential-cache/" "temp/" ".config/" "tuxguitar-1.2-linux-x86/" "update~" ".toprc" ".subversion/" ".Xauthority" ".gtkrc-2.0" "Podcasts/" ".dvisvgm/" "Documents/" ".ripperXrc" ".gnuplot-wxt" ".xinitrc" ".compiz/" "Zotero_linux-x86_64/" ".ssh/" "dwhelper/" "Desktop/" "reset-touchpad.bash" ".emacs.d/" "grep" "matlab_crash_dump.17911-2" ".XCompose" "test.ipynb" "Public/" ".synaptic/" ".gtkrc-xfce" ".gksu.lock" "move-to-next-monitor" ".thumbnails/" ".gnome2_private/" ".matlab/" ".dmrc" ".local/" ".bash_history" "linux-dd.pdf" ".wine/" ".linuxmint/" ".zotero/" "queuecheck.bash" ".aptitude/" ".vapor-version" "stuff.txt~" ".screenrc" ".gitconfig" "avonDonationReceiptpdf")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
