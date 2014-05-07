@@ -162,7 +162,8 @@ ORPHAN  05;37;41
 MISSING 05;37;41
 
 # files with execute permission
-EXEC 00  # Unix
+#EXEC 01;31  # Unix
+EXEC 00 # Unix
 .cmd 01;31  # Win
 .exe 01;31  # Win
 .com 01;31  # Win
@@ -231,6 +232,7 @@ EXEC 00  # Unix
 .tex 32
 .m 32
 .in 32
+.ipynb 32
 
 ### Multimedia formats
 
@@ -324,6 +326,8 @@ EXEC 00  # Unix
 .pptx 31
 .fla 31
 .psd 31
+.nc 31
+.cdf 31
 
 # Archives, compressed
 .7z   1;35
