@@ -35,8 +35,12 @@
 (require 'saveplace)
 (setq-default save-place t)
 
-;; match parantheses
+;; match parentheses
 (show-paren-mode t)
+
+;; set solarized theme by default
+(disable-theme 'zenburn)
+(load-theme 'solarized-light t)
 
 ;; use spaces for TABs
 (setq-default indent-tabs-mode nil)
