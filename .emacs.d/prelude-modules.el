@@ -2,7 +2,7 @@
 
 (require 'prelude-ido) ;; Super charges Emacs completion for C-x C-f and more
 ;; (require 'prelude-helm) ;; Interface for narrowing and search
-(require 'prelude-company)
+;;(require 'prelude-company)
 
 (require 'prelude-c)
 ;; (require 'prelude-clojure)
@@ -10,7 +10,7 @@
 ;; (require 'prelude-common-lisp)
 ;; (require 'prelude-css)
 (require 'prelude-emacs-lisp)
-(require 'prelude-erc) ;; Emacs IRC client
+;;(require 'prelude-erc) ;; Emacs IRC client
 ;; (require 'prelude-erlang)
 ;; (require 'prelude-haskell)
 (require 'prelude-js)

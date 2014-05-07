@@ -3,8 +3,8 @@
 ;; disable guru mode
 (setq prelude-guru nil)
 
-;; Disbale whitespace mode
-(setq prelude-whitespace nil)
+;; Disable whitespace mode
+;;(setq prelude-whitespace nil)
 
 ;; share clipboard with X
 (setq x-select-enable-clipboard t
@@ -37,6 +37,10 @@
 
 ;; match parantheses
 (show-paren-mode t)
+
+;; use spaces for TABs
+(setq-default indent-tabs-mode nil)
+(setq default-tab-width 4)
 
 ;; line numbers by default
 (global-linum-mode 1)
@@ -72,6 +76,13 @@
 (require 'writegood-mode)
 (global-set-key "\C-cg" 'writegood-mode)
 
+;; which-function-mode
+(which-function-mode)
+(setq which-func-unknown "n/a")
+
+;; electric indent mode enabled
+(electric-indent-mode +1)
+
 ;; matlab.el
 (add-to-list 'load-path "~/.emacs.d/personal/matlab-emacs/")
 (autoload 'matlab-mode "matlab" "Enter MATLAB mode." t)
@@ -82,7 +93,7 @@
   (setq matlab-indent-function-body t)  ; if you want function bodies indented
   (setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
   (defun my-matlab-mode-hook ()
-    (setq fill-column 76))		; where auto-fill should wrap
+    (setq fill-column 76)); where auto-fill should wrap
 ;; default options for starting matlab
 (custom-set-variables
  '(matlab-shell-command-switches '("-nodesktop -nosplash")))
@@ -90,7 +101,7 @@
 ;; for GDB/debugging in general
 (global-set-key (kbd "<f5>") 'gud-cont)
 (global-set-key (kbd "<f11>") 'gud-step) ;; equiv matlab step in
-(global-set-key (kbd "<f10>") 'gud-next) ;; equiv matlab step 1 
+(global-set-key (kbd "<f10>") 'gud-next) ;; equiv matlab step 1
 (global-set-key (kbd "<f7>") 'gud-finish) ;; equiv matlab step out
 
 (global-font-lock-mode 1)
@@ -106,8 +117,8 @@
 (when (>= emacs-major-version 24)
   (require 'package)
   (add-to-list 'package-archives
-	       '("marmalade" .
-		 "http://marmalade-repo.org/packages/"))
+               '("marmalade" .
+                 "http://marmalade-repo.org/packages/"))
   (package-initialize)
 )
 ;; syntax checking with flycheck
