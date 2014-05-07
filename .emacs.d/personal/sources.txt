@@ -1,0 +1,11 @@
+# Sources for my .emacs updates
+
+Better Defaults: https://github.com/technomancy/better-defaults
+
+http://www.robsearles.com/2011/04/emacs-weekly-tip-1-version-control-emacs-d/
+
+http://blog.angjookanazawa.com/post/8815280589/productivity-matlab-emacs-integration-more
+
+http://www.seaandsailor.com/emacs-config.html
+
+
