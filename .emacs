@@ -71,15 +71,16 @@
 )
 
 ;; syntax checking with flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;;(require 'flycheck)
+;;    (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; jedi mode
-(autoload 'jedi-setup "jedi" nil t)
-(add-hook 'python-mode-hook 'jedi-setup)
+;;(autoload 'jedi-setup "jedi" nil t)
+;;(add-hook 'python-mode-hook 'jedi-setup)
 
 ;; auto-complete
-(require 'auto-complete)
-(global-auto-complete-mode t)
+;;(require 'auto-complete)
+;;(global-auto-complete-mode t)
 (provide '.emacs)
 
 ;;; .emacs ends here
