@@ -98,6 +98,9 @@
   (setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
   (defun my-matlab-mode-hook ()
     (setq fill-column 76)); where auto-fill should wrap
+;; have  matlab-shell read command history
+(setq comint-input-ring-file-name "~/.matlab/R2014a/history.m")
+(comint-read-input-ring t)
 ;; default options for starting matlab
 (custom-set-variables
  '(matlab-shell-command-switches '("-nodesktop -nosplash")))
