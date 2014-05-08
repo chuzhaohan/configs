@@ -1,5 +1,5 @@
 shell -$SHELL
-term screen-16color
+term xterm-256color
 
 # status bar
 hardstatus on
