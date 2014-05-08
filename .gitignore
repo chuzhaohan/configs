@@ -1,0 +1,7 @@
+java.log.*
+.recentf
+matlab_*
+.ssh/
+.xsession-errors*
+.emacs.desktop
+*~

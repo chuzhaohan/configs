@@ -142,6 +142,8 @@ NORMAL 00
 FILE 00
 # directory
 DIR 36
+OTHER_WRITABLE 36
+OWR 36
 # symbolic link
 LINK 35
 

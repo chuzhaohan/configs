@@ -5,9 +5,11 @@ term xterm-256color
 hardstatus on
 hardstatus alwayslastline
 #hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
-hardstatus string '%{= kW}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %Y-%m-%d %{W}%c:%s %{g}]'
+#hardstatus string '%{= kW}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %Y-%m-%d %{W}%c:%s %{g}]'
+hardstatus string '%{= W}%{g}[ %H %{g}][%= %{= k}%?%-Lw%?%{R}(%{k}%n*%f%t%?(%u)%?%{R})%{k}%?%+Lw%?%?%= %{g}][%{B} %Y-%m-%d %{k}%c:%s %{g}]'
+
 #zombie ko
-caption always "%{rk}%{B}[%{W}Status:%{r} %?%h:None%?%{B}]%=[%{r}Load : %l%{B}]"
+caption always "%{g}[%{d}Status:%{R} %?%h:None%?%{g}]%=[%{R}Load : %l%{g}]"
 
 vbell off 
 autodetach on # screen automatically detaches if connection is cut
@@ -17,7 +19,7 @@ defscrollback 30000
 
 # terminfo and termcap for nice 256 color terminal
 # allow bold colors - necessary for some reason
-attrcolor b ".I" 
+#attrcolor b ".I" 
 # tell screen how to set colors. AB = background, AF=foreground 
 #termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm' 
 # erase background with current bg color 
