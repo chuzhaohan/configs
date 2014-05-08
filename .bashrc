@@ -110,7 +110,7 @@ Jobs="\j"
 User="\u"
 Host="\h"
 
-# export TERM=xterm-256color
+export TERM=xterm-256color
 export CDPATH=.:~:~/tools/:~/ROMS/runs/eddyshelf/:~/ROMS/:~/ROMS/runs//eddyshelf/topoeddy/:~/ROMS/trunk/ROMS/
 
 export PATH=/home/deepak/:/usr/local/texlive/2013/bin/x86_64-linux/:$PATH
