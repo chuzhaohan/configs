@@ -1,0 +1,6 @@
+[ui]
+username = Deepak Cherian <dpak.cherian@gmail.com>
+verbose = True
+[extensions]
+hgext.bookmarks =
+hggit = /usr/local/lib/python2.7/dist-packages/hggit/
