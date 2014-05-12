@@ -1,5 +1,7 @@
 java.log.*
 .recentf
+archive-contents
+.emacs.d/savefile/
 matlab_*
 .ssh/
 .xsession-errors*
