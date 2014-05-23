@@ -57,6 +57,11 @@
 (setq recentf-max-menu-items 25)
 (global-set-key "\C-x \C-r" 'recentf-open-files)
 
+;; pydoc-info
+(add-to-list 'load-path "~/.emacs.d/modules/pydoc-info/")
+(load-library "~/.emacs.d/modules/pydoc-info/pydoc-info.el")
+(require 'pydoc-info)
+
 ;; LaTeX configuration
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)

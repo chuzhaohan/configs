@@ -1,26 +1,60 @@
-alias emacs='emacs -nw --no-desktop'
-#export ALTERNATE_EDITOR='/usr/bin/emacs --daemon'
-#export EDITOR='emacsclient -t'
-#export VISUAL='emacsclient -t'
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
-alias aces='ssh aces'
-alias scylla='ssh scylla'
-alias mohawk='ssh mohawk'
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
 
-# matlab setup
-alias matlab='matlab -nosplash -nodesktop'
-export _JAVA_OPTIONS="-Dsun.java2d.pmoffscreen=false"
+# don't put duplicate lines in the history. See bash(1) for more options
+# ... or force ignoredups and ignorespace
+HISTCONTROL=ignoredups:ignorespace
 
 alias ll='ls -alh'
 alias ncview='ncview -no1d'
 alias ls='ls'
 
-alias ipython='/usr/local/bin/ipython'
+# append to the history file, don't overwrite it
+shopt -s histappend
 
-if [ $UID -ne 0 ]; then
-    alias reboot='sudo reboot'
-    alias apt-get='sudo apt-get'
-    alias tlmgr='sudo /usr/local/texlive/2013/bin/x86_64-linux//tlmgr'
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=5000
+HISTFILESIZE=5000
+
+export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf:~/ROMS/runs/eddyshelf/topoeddy/:~/ROMS/
+export PATH=~/:$PATH
+export PYTHONPATH=
+export TERM=xterm-256color
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+if [ -f ~/.bash_common ]; then
+    . ~/.bash_common
 fi
 
 export GPGKEY=2EAEF83B
@@ -110,14 +144,17 @@ Jobs="\j"
 User="\u"
 Host="\h"
 
-export TERM=xterm-256color
-export CDPATH=.:~:~/tools/:~/ROMS/runs/eddyshelf/:~/ROMS/:~/ROMS/runs//eddyshelf/topoeddy/:~/ROMS/trunk/ROMS/
+# export TERM=xterm-256color
 
+export CDPATH=.:~:/media/data/Work/:/media/data/Work/eddyshelf/:/media/data/Work/eddyshelf/runs/:/media/data/Work/ROMS/trunk/ROMS/
 export PATH=/home/deepak/:/usr/local/texlive/2013/bin/x86_64-linux/:$PATH
 export MANPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$MANPATH
 export INFOPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$INFOPATH
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH # vapor-setup mucks up netcdf and hdf library locations
 export PIPELIGHT_GPUACCELERATION=2
+
+alias et='emacsclient -t'
+alias ec='emacsclient -c'
 
 # pretty ls colors?
 eval `dircolors ~/.dir_colors`
@@ -142,18 +179,25 @@ fi)'
 # make screen update DISPLAY to required value?
 VARS_TO_UPDATE="DISPLAY DBUS_SESSION_BUS_ADDRESS SESSION_MANAGER GPG_AGENT_INFO"
 screen_pushenv () {
-  ~/screen-sendenv.py -t screen $VARS_TO_UPDATE
+  screen-sendenv.py -t screen $VARS_TO_UPDATE
 }
 tmux_pushenv () {
-  ~/screen-sendenv.py -t tmux $VARS_TO_UPDATE
+  screen-sendenv.py -t tmux $VARS_TO_UPDATE
 }
-
 screen_pullenv () {
-    tempfile = $(mktemp -q) && {
-        for vars in $VARS_TO_UPDATE; do
-            screen sh -c "echo export $var=\$$var >> \"$tempfile\""
-        done
-        . "$tempfile"
-        rm -f "$tempfile"
-    }
+  tempfile=$(mktemp -q) && {
+    for var in $VARS_TO_UPDATE; do
+      screen sh -c "echo export $var=\$$var >> \"$tempfile\""
+    done
+    . "$tempfile"
+    rm -f "$tempfile"
+  }
+}
+tmux_pullenv () {
+  for var in $VARS_TO_UPDATE; do
+    expr="$(tmux showenv | grep "^$var=")"
+    if [ -n "$expr" ]; then
+      export "$expr"
+    fi
+  done
 }
