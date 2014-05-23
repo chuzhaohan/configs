@@ -13,7 +13,7 @@ export _JAVA_OPTIONS="-Dsun.java2d.pmoffscreen=false"
 
 alias ll='ls -alh'
 alias ncview='ncview -no1d'
-alias ls='ls -h --color'
+alias ls='ls'
 
 alias ipython='/usr/local/bin/ipython'
 
