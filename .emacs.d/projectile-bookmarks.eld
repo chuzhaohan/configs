@@ -1,1 +1,1 @@
-("~/.emacs.d/" "~/")
+("~/" "~/org/" "~/.emacs.d/" "/media/data/Work/tools/" "/media/data/Work/ROMS/runs/eddyshelf/" "/media/data/Work/ROMS/trunk/" "/media/data/Work/eddyshelf/" "~/gits/nco-bindings/" "~/gits/solarized/xresources/" "/ssh:poison:/home/poison/deepak/ROMS/runs/eddyshelf")
