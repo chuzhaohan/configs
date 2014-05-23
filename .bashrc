@@ -13,12 +13,12 @@ HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=5000
+HISTFILESIZE=5000
 
 export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf:~/ROMS/runs/eddyshelf/topoeddy/:~/ROMS/
 export PATH=~/:$PATH
-export PYTHONPATH=~/Data/Work/tools/python/dc/:$PYTHONPATH
+export PYTHONPATH=
 export TERM=xterm-256color
 
 # check the window size after each command and, if necessary,
@@ -148,6 +148,9 @@ export MANPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$MANPATH
 export INFOPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$INFOPATH
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH # vapor-setup mucks up netcdf and hdf library locations
 export PIPELIGHT_GPUACCELERATION=2
+
+alias et='emacsclient -t'
+alias ec='emacsclient -c'
 
 # pretty ls colors?
 eval `dircolors ~/.dir_colors`
