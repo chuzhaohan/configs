@@ -8,17 +8,17 @@
 
 ;; share clipboard with X
 (setq x-select-enable-clipboard t
-        x-select-enable-primary t
-        save-interprogram-paste-before-kill t)
+      x-select-enable-primary t
+      save-interprogram-paste-before-kill t)
 
 ;; save recently open files = 'desktop'
 (desktop-save-mode 1)
 (defun my-desktop-save ()
-    (interactive)
-    ;; Don't call desktop-save-in-desktop-dir, as it prints a message.
-    (if (eq (desktop-owner) (emacs-pid))
-        (desktop-save desktop-dirname)))
-  (add-hook 'auto-save-hook 'my-desktop-save)
+  (interactive)
+  ;; Don't call desktop-save-in-desktop-dir, as it prints a message.
+  (if (eq (desktop-owner) (emacs-pid))
+      (desktop-save desktop-dirname)))
+(add-hook 'auto-save-hook 'my-desktop-save)
 
 ;; delete selection works
 (delete-selection-mode 1)
@@ -72,9 +72,9 @@
 (setq TeX-PDF-mode t)
 
 (setq TeX-output-view-style
-    (quote
-     (("^pdf$" "." "evince -f %o")
-      ("^html?$" "." "iceweasel %o"))))
+      (quote
+       (("^pdf$" "." "evince -f %o")
+        ("^html?$" "." "iceweasel %o"))))
 
 ;; Setting up writegood-mode
 (require 'writegood-mode)
@@ -88,22 +88,46 @@
 (electric-indent-mode +1)
 
 ;; matlab.el
-(add-to-list 'load-path "~/.emacs.d/personal/matlab-emacs/")
+;;(add-to-list 'load-path "~/.emacs.d/personal/matlab-emacs/")
 (autoload 'matlab-mode "matlab" "Enter MATLAB mode." t)
-(setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
+;;(setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
 (autoload 'matlab-shell "matlab" "Interactive MATLAB mode." t)
-(load-library "~/.emacs.d/personal/matlab-emacs/matlab-load.el")
+;;(load-library "~/.emacs.d/personal/matlab-emacs/matlab-load.el")
 (require 'matlab-load)
-  (setq matlab-indent-function-body t)  ; if you want function bodies indented
-  (setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
-  (defun my-matlab-mode-hook ()
-    (setq fill-column 76)); where auto-fill should wrap
+(setq matlab-indent-function-body t)  ; if you want function bodies indented
+(setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
+(defun my-matlab-mode-hook ()
+  (setq fill-column 76)); where auto-fill should wrap
 ;; have  matlab-shell read command history
 (setq comint-input-ring-file-name "~/.matlab/R2014a/history.m")
 (comint-read-input-ring t)
+;; prevent rendering of urls in output. hopefully, this fixes responsiveness
+(add-hook 'matlab-shell-mode-hook
+          (lambda () (remove-hook 'comint-output-filter-functions
+                                  'matlab-shell-render-errors-as-anchor t)))
 ;; default options for starting matlab
 (custom-set-variables
  '(matlab-shell-command-switches '("-nodesktop -nosplash")))
+;; attempt to get execute-cell to work
+(defun matlab-inside-comment-p ()
+  (save-excursion
+    (beginning-of-line 1)
+    (looking-at "^%")))
+(defun matlab-select-cell ()
+  (interactive)
+  (goto-char
+   (if (re-search-backward "^\\s-*%%[^%]" nil t)
+       (match-end 0)
+     (point-min)))
+  (while (and (python-inside-comment-p)
+              (eq 0 (forward-line 1)))
+    nil)
+  (set-mark (point))
+  (goto-char
+   (if (re-search-forward "^\\s-*\\(%%[^%]\\)" nil t)
+       (- (match-beginning 1) 2)
+     (point-max))))
+
 
 ;; for GDB/debugging in general
 (global-set-key (kbd "<f5>") 'gud-cont)
@@ -127,7 +151,7 @@
                '("marmalade" .
                  "http://marmalade-repo.org/packages/"))
   (package-initialize)
-)
+  )
 ;; syntax checking with flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
