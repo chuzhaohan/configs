@@ -19,7 +19,7 @@ HISTFILESIZE=5000
 export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf:~/ROMS/runs/eddyshelf/topoeddy/:~/ROMS/
 export PATH=~/:$PATH
 export PYTHONPATH=
-export TERM=xterm-256color
+export TERM=xterm
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
