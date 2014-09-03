@@ -133,6 +133,7 @@ On_IWhite="\[\033[0;107m\]"   # White
 # Various variables you might want for your PS1 prompt instead
 Time12h="\T"
 Time12a="\@"
+Time24h="\t"
 PathShort="\w"
 PathFull="\W"
 NewLine="\n"
@@ -157,7 +158,7 @@ eval `dircolors ~/.dir_colors`
 
 # bash prompt colors
 #PS1='\[\e[0;32m\]\u\[\e[m\]@\h: \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]$(__git_ps1) \$\[\e[m\] '
-export PS1=$IBlack$Time12h$Color_Off\ $Green$User$Color_Off@$Host'$(git branch &>/dev/null;\
+export PS1=$IBlack$Time24h$Color_Off\ $Green$User$Color_Off@$Host'$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
   echo "$(echo `git status` | grep "nothing added to commit" > /dev/null 2>&1; \
   if [ "$?" -eq "0" ]; then \
