@@ -23,10 +23,6 @@
 ;; delete selection works
 (delete-selection-mode 1)
 
-;; disabled now because prelude has a better version apparently
-;;allows many operations (like buffer switching and file navigation) to be enhanced with instant feedback among the completion choices.
-;;(ido-mode t)
-
 ;; append directory to buffer name when multiple files with same name are opened
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
@@ -38,13 +34,18 @@
 ;; match parentheses
 (show-paren-mode t)
 
+;; whitespace butler on
+;;(ws-butler-mode t)
+
 ;; set solarized theme by default
 (disable-theme 'zenburn)
+(require 'color-theme)
+(color-theme-initialize)
 (load-theme 'solarized-light t)
 
 ;; use spaces for TABs
 (setq-default indent-tabs-mode nil)
-(setq default-tab-width 4)
+(setq tab-width 4)
 
 ;; line numbers by default
 (global-linum-mode 1)
@@ -92,12 +93,14 @@
 ;; electric indent mode enabled
 (electric-indent-mode +1)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; MATLAB STUFF ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; matlab.el
 ;;(add-to-list 'load-path "~/.emacs.d/personal/matlab-emacs/")
 (autoload 'matlab-mode "matlab" "Enter MATLAB mode." t)
 ;;(setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
 (autoload 'matlab-shell "matlab" "Interactive MATLAB mode." t)
 ;;(load-library "~/.emacs.d/personal/matlab-emacs/matlab-load.el")
+
 (require 'matlab-load)
 (setq matlab-indent-function-body t)  ; if you want function bodies indented
 (setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
@@ -113,6 +116,7 @@
 ;; default options for starting matlab
 (custom-set-variables
  '(matlab-shell-command-switches '("-nodesktop -nosplash")))
+
 ;; attempt to get execute-cell to work
 (defun matlab-inside-comment-p ()
   (save-excursion
@@ -133,12 +137,12 @@
        (- (match-beginning 1) 2)
      (point-max))))
 
-
 ;; for GDB/debugging in general
 (global-set-key (kbd "<f5>") 'gud-cont)
 (global-set-key (kbd "<f11>") 'gud-step) ;; equiv matlab step in
 (global-set-key (kbd "<f10>") 'gud-next) ;; equiv matlab step 1
 (global-set-key (kbd "<f7>") 'gud-finish) ;; equiv matlab step out
+;;;;;;;;;;;;;;;;;;;;;;;; END MATLAB STUFF ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (global-font-lock-mode 1)
 
