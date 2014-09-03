@@ -23,7 +23,7 @@ HISTFILESIZE=5000
 export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf:~/ROMS/runs/eddyshelf/topoeddy/:~/ROMS/
 export PATH=~/:$PATH
 export PYTHONPATH=
-export TERM=xterm-256color
+export TERM=xterm
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -137,6 +137,7 @@ On_IWhite="\[\033[0;107m\]"   # White
 # Various variables you might want for your PS1 prompt instead
 Time12h="\T"
 Time12a="\@"
+Time24h="\t"
 PathShort="\w"
 PathFull="\W"
 NewLine="\n"
@@ -153,17 +154,18 @@ export INFOPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$INFOPATH
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH # vapor-setup mucks up netcdf and hdf library locations
 export PIPELIGHT_GPUACCELERATION=2
 
-alias et='emacsclient -t'
-alias ec='emacsclient -c'
+export EDITOR='emacsclient -t --alternate-editor="emacs --daemon"'
+alias et='emacsclient -t --alternate-editor="emacs --daemon"'
+alias ec='emacsclient -c --alternate-editor="emacs --daemon"'
 
 # pretty ls colors?
 eval `dircolors ~/.dir_colors`
 
 # bash prompt colors
 #PS1='\[\e[0;32m\]\u\[\e[m\]@\h: \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]$(__git_ps1) \$\[\e[m\] '
-export PS1=$IBlack$Time12h$Color_Off\ $Green$User$Color_Off@$Host'$(git branch &>/dev/null;\
+export PS1=$IBlack$Time24h$Color_Off\ $Green$User$Color_Off@$Host'$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
-  echo "$(echo `git status` | grep "nothing added to commit" > /dev/null 2>&1; \
+  echo "$(echo `git status` | egrep "nothing (added )?to commit" > /dev/null 2>&1; \
   if [ "$?" -eq "0" ]; then \
     # @4 - Clean repository - nothing to commit
     echo "'$Green'"$(__git_ps1 " (%s)"); \
