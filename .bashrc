@@ -33,9 +33,6 @@ export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf/:~/ROMS/runs/eddyshelf/scri
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH # vapor-setup mucks up netcdf and hdf library locations
 export PIPELIGHT_GPUACCELERATION=2
 
-alias et='emacsclient -t'
-alias ec='emacsclient -c'
-
 # pretty ls colors?
 eval `dircolors ~/.dir_colors`
 
