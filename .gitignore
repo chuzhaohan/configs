@@ -2,6 +2,10 @@ java.log.*
 .recentf
 archive-contents
 .emacs.d/savefile/
+.emacs.d/ac-comphist.dat
+.emacs.d/projectile-bookmarks.eld
+*.sqlite
+.ipython/profile_default/static/custom
 matlab_*
 .ssh/
 .xsession-errors*
