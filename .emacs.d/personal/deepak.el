@@ -4,7 +4,7 @@
 (setq prelude-guru nil)
 
 ;; Disable whitespace mode
-;;(setq prelude-whitespace nil)
+(setq prelude-whitespace nil)
 
 ;; share clipboard with X
 (setq x-select-enable-clipboard t
@@ -19,6 +19,13 @@
     (if (eq (desktop-owner) (emacs-pid))
         (desktop-save desktop-dirname)))
   (add-hook 'auto-save-hook 'my-desktop-save)
+
+;; get wb-butler-global-mode to work with emacs --daemon
+;;(defun run-settings-functions-which-require-client ()
+;;  (ws-butler-global-mode t)
+;;)
+
+;;(add-hook 'server-visit-hook 'run-settings-functions-which-require-client)
 
 ;; delete selection works
 (delete-selection-mode 1)
@@ -40,14 +47,17 @@
 
 ;; set solarized theme by default
 (disable-theme 'zenburn)
+(require 'color-theme)
+(color-theme-initialize)
 (load-theme 'solarized-light t)
 
 ;; use spaces for TABs
 (setq-default indent-tabs-mode nil)
-(setq default-tab-width 4)
+(setq tab-width 4)
 
 ;; line numbers by default
 (global-linum-mode 1)
+(setq linum-format "%d ")
 
 ;; recentf stuff - recently used files
 (require 'recentf)
@@ -91,6 +101,9 @@
 
 ;; electric indent mode enabled
 (electric-indent-mode +1)
+
+;; whitespace-butler mode
+(ws-butler-mode)
 
 ;; matlab.el
 (add-to-list 'load-path "~/.emacs.d/personal/matlab-emacs/")
