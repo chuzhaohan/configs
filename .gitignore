@@ -11,3 +11,5 @@ matlab_*
 .xsession-errors*
 .emacs.desktop
 *~
+*.pdf
+*.json
