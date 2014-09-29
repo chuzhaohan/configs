@@ -20,10 +20,24 @@ shopt -s histappend
 HISTSIZE=5000
 HISTFILESIZE=5000
 
-export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf/:~/ROMS/runs/eddyshelf/scripts/:~/ROMS/runs/eddyshelf/topoeddy/:~/ROMS/
-export PATH=~/:$PATH
+# vapor setup
+#. /usr/local/vapor-2.3.0/bin/vapor-setup.sh
+
+export GPGKEY=2EAEF83B
 export PYTHONPATH=
 export TERM=xterm
+export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf/:~/ROMS/runs/eddyshelf/scripts/:~/ROMS/runs/eddyshelf/topoeddy/:~/ROMS/
+#export PATH=/home/deepak/:/usr/local/texlive/2013/bin/x86_64-linux/:$PATH
+#export MANPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$MANPATH
+#export INFOPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$INFOPATH
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH # vapor-setup mucks up netcdf and hdf library locations
+export PIPELIGHT_GPUACCELERATION=2
+
+alias et='emacsclient -t'
+alias ec='emacsclient -c'
+
+# pretty ls colors?
+eval `dircolors ~/.dir_colors`
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -57,10 +71,6 @@ if [ -f ~/.bash_common ]; then
     . ~/.bash_common
 fi
 
-export GPGKEY=2EAEF83B
-
-# vapor setup
-#. /usr/local/vapor-2.3.0/bin/vapor-setup.sh
 # Reset
 Color_Off="\[\033[0m\]"       # Text Reset
 
@@ -146,20 +156,6 @@ User="\u"
 Host="\h"
 
 # export TERM=xterm-256color
-
-export CDPATH=.:~:/media/data/Work/:/media/data/Work/eddyshelf/:/media/data/Work/eddyshelf/runs/:/media/data/Work/ROMS/trunk/ROMS/
-export PATH=/home/deepak/:/usr/local/texlive/2013/bin/x86_64-linux/:$PATH
-export MANPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$MANPATH
-export INFOPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$INFOPATH
-export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH # vapor-setup mucks up netcdf and hdf library locations
-export PIPELIGHT_GPUACCELERATION=2
-
-export EDITOR='emacsclient -t --alternate-editor="emacs --daemon"'
-alias et='emacsclient -t --alternate-editor="emacs --daemon"'
-alias ec='emacsclient -c --alternate-editor="emacs --daemon"'
-
-# pretty ls colors?
-eval `dircolors ~/.dir_colors`
 
 # bash prompt colors
 #PS1='\[\e[0;32m\]\u\[\e[m\]@\h: \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]$(__git_ps1) \$\[\e[m\] '
