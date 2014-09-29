@@ -9,9 +9,9 @@
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
 
+alias ls='ls --color'
 alias ll='ls -alh'
 alias ncview='ncview -no1d'
-alias ls='ls'
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -20,7 +20,7 @@ shopt -s histappend
 HISTSIZE=5000
 HISTFILESIZE=5000
 
-export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf:~/ROMS/runs/eddyshelf/topoeddy/:~/ROMS/
+export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf/:~/ROMS/runs/eddyshelf/scripts/:~/ROMS/runs/eddyshelf/topoeddy/:~/ROMS/
 export PATH=~/:$PATH
 export PYTHONPATH=
 export TERM=xterm
