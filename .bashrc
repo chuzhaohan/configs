@@ -195,3 +195,6 @@ tmux_pullenv () {
     fi
   done
 }
+
+# added by Anaconda 2.1.0 installer
+#export PATH="/media/data/anaconda/bin:$PATH"
