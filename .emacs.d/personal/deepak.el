@@ -48,7 +48,8 @@
 (disable-theme 'zenburn)
 (require 'color-theme)
 (color-theme-initialize)
-(load-theme 'solarized-light t)
+(color-theme-solarized-light)
+;;(load-theme 'solarized-light t)
 
 ;; use spaces for TABs
 (setq-default indent-tabs-mode nil)
@@ -102,7 +103,7 @@
 (electric-indent-mode +1)
 
 ;; whitespace-butler mode
-(ws-butler-mode)
+;;(ws-butler-mode)
 
 ;; matlab.el
 ;;(add-to-list 'load-path "~/.emacs.d/personal/matlab-emacs/")
