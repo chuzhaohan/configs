@@ -6,7 +6,7 @@
 [alias]
     lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\n--abbrev-commit --date=relative
 [core]
-	editor = emacs
+	editor = emacsclient -t
 [merge]
 	tool = meld
 [credential]
