@@ -30,6 +30,13 @@
 ;; delete selection works
 (delete-selection-mode 1)
 
+;; Return gives both newline and indent
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; disabled now because prelude has a better version apparently
+;;allows many operations (like buffer switching and file navigation) to be enhanced with instant feedback among the completion choices.
+;;(ido-mode t)
+
 ;; append directory to buffer name when multiple files with same name are opened
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
@@ -113,10 +120,13 @@
 ;;(load-library "~/.emacs.d/personal/matlab-emacs/matlab-load.el")
 
 (require 'matlab-load)
-(setq matlab-indent-function-body t)  ; if you want function bodies indented
-(setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
-(defun my-matlab-mode-hook ()
-  (setq fill-column 76)); where auto-fill should wrap
+  (setq matlab-indent-function-body t)  ; if you want function bodies indented
+  (setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
+  (defun my-matlab-mode-hook ()
+    (setq fill-column 76) ; where auto-fill should wrap
+    (add-to-list 'completion-at-point-functions
+                 'semantic-completion-at-point-function))
+
 ;; have  matlab-shell read command history
 (setq comint-input-ring-file-name "~/.matlab/R2014a/history.m")
 (comint-read-input-ring t)
