@@ -155,7 +155,7 @@ Host="\h"
 
 # bash prompt colors
 #PS1='\[\e[0;32m\]\u\[\e[m\]@\h: \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]$(__git_ps1) \$\[\e[m\] '
-export PS1=$IBlack$Time24h$Color_Off\ $Green$User$Color_Off@$Host'$(git branch &>/dev/null;\
+export PS1="┌──"$IBlack$Time24h$Color_Off\ $Green$User$Color_Off@$Host'$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
   echo "$(echo `git status` | grep "nothing added to commit" > /dev/null 2>&1; \
   if [ "$?" -eq "0" ]; then \
@@ -168,7 +168,7 @@ if [ $? -eq 0 ]; then \
 else \
   # @2 - Prompt when not in GIT repo
   echo " '$Blue$PathShort$Green$Color_Off'\$ "; \
-fi)'
+fi)'"\n└──────> "
 
 # make screen update DISPLAY to required value?
 VARS_TO_UPDATE="DISPLAY DBUS_SESSION_BUS_ADDRESS SESSION_MANAGER GPG_AGENT_INFO"
