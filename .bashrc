@@ -9,6 +9,10 @@
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
 
+alias ls='/usr/local/bin/ls'
+alias ll='ls -alh'
+alias ncview='ncview -no1d'
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -22,15 +26,12 @@ HISTFILESIZE=5000
 export GPGKEY=2EAEF83B
 export PYTHONPATH=
 export TERM=xterm
-export CDPATH=.:~:/media/data/Work/:/media/data/Work/eddyshelf/:/media/data/Work/eddyshelf/runs/:/media/data/Work/ROMS/trunk/ROMS/
-export PATH=/home/deepak/:/usr/local/texlive/2013/bin/x86_64-linux/:$PATH
-export MANPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$MANPATH
-export INFOPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$INFOPATH
+export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf/:~/ROMS/runs/eddyshelf/scripts/:~/ROMS/runs/eddyshelf/topoeddy/:~/ROMS/
+#export PATH=/home/deepak/:/usr/local/texlive/2013/bin/x86_64-linux/:$PATH
+#export MANPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$MANPATH
+#export INFOPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$INFOPATH
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH # vapor-setup mucks up netcdf and hdf library locations
 export PIPELIGHT_GPUACCELERATION=2
-
-alias et='emacsclient -t'
-alias ec='emacsclient -c'
 
 # pretty ls colors?
 eval `dircolors ~/.dir_colors`
@@ -157,7 +158,7 @@ Host="\h"
 #PS1='\[\e[0;32m\]\u\[\e[m\]@\h: \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]$(__git_ps1) \$\[\e[m\] '
 export PS1="┌──"$IBlack$Time24h$Color_Off\ $Green$User$Color_Off@$Host'$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
-  echo "$(echo `git status` | grep "nothing added to commit" > /dev/null 2>&1; \
+  echo "$(echo `git status` | egrep "nothing (added )?to commit" > /dev/null 2>&1; \
   if [ "$?" -eq "0" ]; then \
     # @4 - Clean repository - nothing to commit
     echo "'$Green'"$(__git_ps1 " (%s)"); \

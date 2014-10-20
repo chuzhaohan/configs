@@ -4,6 +4,7 @@ archive-contents
 .emacs.d/savefile/
 .emacs.d/ac-comphist.dat
 .emacs.d/projectile-bookmarks.eld
+.emacs.d/personal/matlab-emacs/
 *.sqlite
 .ipython/profile_default/static/custom
 matlab_*
