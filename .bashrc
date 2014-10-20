@@ -9,7 +9,7 @@
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
 
-alias ls='ls --color'
+alias ls='/usr/local/bin/ls'
 alias ll='ls -alh'
 alias ncview='ncview -no1d'
 
