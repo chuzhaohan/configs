@@ -118,6 +118,7 @@
 ;;(setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
 (autoload 'matlab-shell "matlab" "Interactive MATLAB mode." t)
 ;;(load-library "~/.emacs.d/personal/matlab-emacs/matlab-load.el")
+(global-set-key (kbd "C-c m") 'matlab-shell)
 
 (require 'matlab-load)
   (setq matlab-indent-function-body t)  ; if you want function bodies indented
