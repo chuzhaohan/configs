@@ -47,6 +47,12 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
+;; suggest to Emacs that it should split the frame vertically rather than horizontally
+;; when Emacs has the choice (eg when bringing up help).
+;; https://stackoverflow.com/questions/20167246/emacs-open-buffer-in-vertical-split-by-default
+(setq split-height-threshold nil)
+(setq split-width-threshold 160)
+
 ;; save cursor location in file
 (require 'saveplace)
 (setq-default save-place t)
