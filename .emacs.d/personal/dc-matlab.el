@@ -7,6 +7,9 @@
 ;;(setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
 (autoload 'matlab-shell "matlab" "Interactive MATLAB mode." t)
 
+;; keyboard-shortcut for matlab-shell
+(global-set-key (kbd "C-c C-m") 'matlab-shell)
+
 (require 'matlab-load)
   (setq matlab-indent-function-body t)  ; if you want function bodies indented
   (setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
