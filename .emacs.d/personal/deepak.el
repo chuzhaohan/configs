@@ -39,6 +39,10 @@
 ;; Return gives both newline and indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
+;; add word count information
+(require 'wc-mode)
+(global-set-key "\C-cw" 'wc-mode)
+
 ;; disabled now because prelude has a better version apparently
 ;;allows many operations (like buffer switching and file navigation) to be enhanced with instant feedback among the completion choices.
 ;;(ido-mode t)
