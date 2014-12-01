@@ -26,10 +26,11 @@ HISTFILESIZE=5000
 export GPGKEY=2EAEF83B
 export PYTHONPATH=
 export TERM=xterm
-export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf/:~/ROMS/runs/eddyshelf/scripts/:~/ROMS/runs/eddyshelf/topoeddy/:~/ROMS/
-#export PATH=/home/deepak/:/usr/local/texlive/2013/bin/x86_64-linux/:$PATH
-#export MANPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$MANPATH
-#export INFOPATH=/usr/local/texlive/2013/texmf-dist/doc/man:$INFOPATH
+#export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf/:~/ROMS/runs/eddyshelf/scripts/:~/ROMS/runs/eddyshelf/topoeddy/:~/ROMS/
+export CDPATH=.:~:~/Data/Work/:~/Data/Work/ROMS/runs/:/:$CDPATH
+export PATH=/home/deepak/:/usr/local/texlive/2014/bin/x86_64-linux/:$PATH
+export MANPATH=/usr/local/texlive/2014/texmf-dist/doc/man:$MANPATH
+export INFOPATH=/usr/local/texlive/2014/texmf-dist/doc/man:$INFOPATH
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH # vapor-setup mucks up netcdf and hdf library locations
 export PIPELIGHT_GPUACCELERATION=2
 
