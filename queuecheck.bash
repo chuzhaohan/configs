@@ -20,16 +20,19 @@ cut=/usr/bin/cut
 
 #job=$($QSTAT | $AWK '{print $1, $5}' | $GREP "\br" | $AWK '{print $1}')
 job=$( echo $($qstat | $awk '{print $1, $5}' | $grep "\bt\|\bS\|\bR" | $awk '{print $1}') | $cut -d ' ' -f3-)
-# get job name for above job numbers
-OUT=$($qstat | $grep "dcherian" | $grep ${job// /\\\|} | $awk '{print $3'})
-echo $OUT
+
+if [[ !( -z "$job" ) ]]; then
+    # get job name for above job numbers
+    OUT=$($qstat | $grep "dcherian" | $grep ${job// /\\\|} | $awk '{print $3'})
+    echo $OUT
+
+    # if not an empty string then, email OUT to me
+    if [[ !( -z "$OUT" ) ]]; then
+	echo $OUT | mail -s "queuecheck" dcherian@mit.edu
+    fi
+fi
 # check that cron is working
 #DATE=$(date)
 #echo "running on cron: $DATE" >> ~/croncheck
 #echo "$QSTAT" >> ~/croncheck
 #echo $OUT >> ~/croncheck
-
-# if not an empty string then, email OUT to me
-if [[ !( -z "$OUT" ) ]]; then
-    echo $OUT | mail -s "queuecheck" dcherian@mit.edu
-fi
