@@ -39,6 +39,12 @@
 ;; Return gives both newline and indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
+;; move ace-window away from C-xo
+(global-unset-key (kbd "C-x o"))
+(global-set-key (kbd "M-p") 'ace-window)
+(global-set-key (kbd "C-x o") 'other-window)
+
+
 ;; disabled now because prelude has a better version apparently
 ;;allows many operations (like buffer switching and file navigation) to be enhanced with instant feedback among the completion choices.
 ;;(ido-mode t)
