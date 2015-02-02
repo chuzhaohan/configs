@@ -12,6 +12,7 @@
 	gl = log --oneline --decorate --stat --graph
 	st = status -sb
 	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+	ap = add -p
 
 [core]
 	editor = emacsclient -t
@@ -27,5 +28,9 @@
 	diff = auto
 	status = auto
 
+[help]
+	autocorrect = 1
+
 [status]
 	relativePaths = false
+	submodulesummary = true

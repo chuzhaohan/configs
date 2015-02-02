@@ -43,9 +43,24 @@
 (require 'wc-mode)
 (global-set-key "\C-cw" 'wc-mode)
 
+;; move ace-window away from C-xo
+(global-unset-key (kbd "\C-x o"))
+(global-set-key (kbd "\M-p") 'ace-window)
+(global-set-key (kbd "\C-x o") 'other-window)
+
 ;; disabled now because prelude has a better version apparently
 ;;allows many operations (like buffer switching and file navigation) to be enhanced with instant feedback among the completion choices.
 ;;(ido-mode t)
+
+;; semantic / CEDET
+(semantic-mode 1)
+(setq semantic-default-submodes
+      '(global-semantic-decoration-mode
+        global-semanticdb-minor-mode
+        global-semantic-idle-scheduler-mode
+        global-semantic-idle-completions-mode
+        global-semantic-highlight-func-mode
+        global-semantic-stickyfunc-mode))
 
 ;; append directory to buffer name when multiple files with same name are opened
 (require 'uniquify)
@@ -84,7 +99,7 @@
 ;;(setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
-(global-set-key "\C-x \C-r" 'recentf-open-files)
+(global-set-key "\C-x\C-r" 'recentf-open-files)
 
 ;; pydoc-info
 (add-to-list 'load-path "~/.emacs.d/modules/pydoc-info/")

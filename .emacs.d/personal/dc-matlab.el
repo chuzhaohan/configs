@@ -22,6 +22,9 @@
 (setq comint-input-ring-file-name "~/.matlab/R2014a/history.m")
 (comint-read-input-ring t)
 
+;; get CEDET running
+(matlab-cedet-setup)
+
 ;; prevent rendering of urls in output. hopefully, this fixes responsiveness
 (add-hook 'matlab-shell-mode-hook
           (lambda () (remove-hook 'comint-output-filter-functions

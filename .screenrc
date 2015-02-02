@@ -15,6 +15,7 @@ vbell off
 autodetach on # screen automatically detaches if connection is cut
 # altscreen on
 deflogin on
+defflow off
 defscrollback 30000
 
 # terminfo and termcap for nice 256 color terminal
