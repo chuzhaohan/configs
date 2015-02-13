@@ -23,7 +23,7 @@ HISTFILESIZE=5000
 # vapor setup
 #. /usr/local/vapor-2.3.0/bin/vapor-setup.sh
 
-export GPGKEY=2EAEF83B
+export GPGKEY=1DEDB5C3
 export PYTHONPATH=
 export TERM=xterm
 #export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf/:~/ROMS/runs/eddyshelf/scripts/:~/ROMS/runs/eddyshelf/topoeddy/:~/ROMS/
@@ -67,6 +67,10 @@ fi
 
 if [ -f ~/.bash_common ]; then
     . ~/.bash_common
+fi
+
+if [ -f /etc/infinality-settings.sh ]; then
+    . /etc/infinality-settings.sh
 fi
 
 # Reset
