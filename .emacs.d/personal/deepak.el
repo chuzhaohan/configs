@@ -81,9 +81,8 @@
 
 ;; set solarized theme by default
 (disable-theme 'zenburn)
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-solarized-light)
+(set-frame-parameter nil 'background-mode 'light)
+(load-theme 'solarized t)
 
 ;; use spaces for TABs
 (setq-default indent-tabs-mode nil)
