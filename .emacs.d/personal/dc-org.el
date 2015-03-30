@@ -3,6 +3,12 @@
 ;; - Deepak Cherian
 
 ;;; Code:
+;; org-mode class for my latex style
+(require 'org)
+(require 'org-latex)
+(require 'prelude-org)
+(setq org-export-latex-listings t)
+
 ;; org mode keybindings
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
@@ -10,10 +16,6 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 (setq org-log-done t)
 
-;; org-mode class for my latex style
-(require 'org)
-(require 'org-latex)
-(setq org-export-latex-listings t)
 ;; Originally taken from Bruno Tavernier: http://thread.gmane.org/gmane.emacs.orgmode/31150/focus=31432
 ;; but adapted to use latexmk 4.20 or higher.
 (defun my-auto-tex-cmd ()
@@ -37,9 +39,10 @@
 ;;(remove-hook 'org-export-latex-after-initial-vars-hook 'my-auto-tex-cmd)
 (setq org-latex-create-formula-image-program 'dvipng)
 
-;;(setq org-file-apps
-;;      ((auto-mode . emacs)
-;;       ("\\.pdf\\'" . "evince %s")))
+
+(setq org-file-apps
+      '((auto-mode . emacs)
+       ("\\.pdf\\'" . "evince %s")))
 
 ;; org-latex-pdf-process is for org > 8.0
 (setq org-latex-pdf-process
@@ -79,12 +82,13 @@
 
 ;; my customized preamble
 (add-to-list 'org-latex-classes
-             '("dcarticle" "[NO-DEFAULT-PACKAGES]"
+             '("dcarticle"
+                "[NO-DEFAULT-PACKAGES]"
                 ("\\section{%s}" . "\\section*{%s}")
                 ("\\subsection{%s}" . "\\subsection*{%s}")
                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")));
+                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 ;;            '("dc-article"
 ;;               "\\documentclass[11pt,oneside]{memoir}\n
 ;;\\usepackage{color}
