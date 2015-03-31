@@ -4,10 +4,10 @@
 
 ;;; Code:
 ;; org-mode class for my latex style
-(require 'org)
-(require 'org-latex)
-(require 'prelude-org)
-(setq org-export-latex-listings t)
+(require 'ox-latex)
+
+(setq org-latex-listings t)
+(setq org-startup-indented t)
 
 ;; org mode keybindings
 (global-set-key "\C-cl" 'org-store-link)
@@ -31,14 +31,13 @@
   (if (string-match "LATEX_CMD: xelatex" (buffer-string))
       (setq texcmd "latexmk -pdflatex=\"xelatex -fmt=/media/data/Work/tools/latex/preamble.fmt\" -pdf %f"))
   ;; LaTeX compilation command
-  (setq org-latex-to-pdf-process (list texcmd)))
+  (setq org-latex-pdf-process (list texcmd)))
 
 ;;(setq texcmd "latexmk -pdflatex=\"xelatex -fmt=/media/data/Work/tools/latex/preamble.fmt\" -pdf %f")
 ;;(setq org-latex-to-pdf-process (list texcmd))
 
 ;;(remove-hook 'org-export-latex-after-initial-vars-hook 'my-auto-tex-cmd)
 (setq org-latex-create-formula-image-program 'dvipng)
-
 
 (setq org-file-apps
       '((auto-mode . emacs)
