@@ -9,6 +9,12 @@
 (setq org-latex-listings t)
 (setq org-startup-indented t)
 
+;; org mode todo faces
+;;(setq org-todo-keyword-faces
+;;      '(("TODO" . org-warning) ("STARTED" . "yellow")
+;;        ("CANCELED" . (:foreground "blue" :weight bold))
+;;        ("DONE" . "green")))
+
 ;; org mode keybindings
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
