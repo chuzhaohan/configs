@@ -51,7 +51,7 @@
 
 ;; org-latex-pdf-process is for org > 8.0
 (setq org-latex-pdf-process
-      '("PATH=/usr/local/texlive/2014/bin/x86_64-linux/:$PATH latexmk -pdflatex='xelatex -fmt=/media/data/Work/tools/latex/preamble.fmt' -pdf %f"))
+      '("PATH=/usr/local/texlive/2014/bin/x86_64-linux/:$PATH latexmk -pdflatex='xelatex -fmt=/media/data/Work/tools/latex/preamble.fmt' -gg -pdf %f"))
 
 (defun my-auto-tex-parameters ()
       "Automatically select the tex packages to include."
