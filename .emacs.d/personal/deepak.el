@@ -40,20 +40,16 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; add word count information
-(require 'wc-mode)
-(global-set-key "\C-cw" 'wc-mode)
+;;(require 'wc-mode)
+;;(global-set-key "\C-cw" 'wc-mode)
 
 ;; move ace-window away from C-xo
 (global-unset-key (kbd "\C-x o"))
 (global-set-key (kbd "\M-p") 'ace-window)
-(global-set-key (kbd "\C-x o") 'other-window)
-
-;; disabled now because prelude has a better version apparently
-;;allows many operations (like buffer switching and file navigation) to be enhanced with instant feedback among the completion choices.
-;;(ido-mode t)
+(global-set-key (kbd "\C-xo") 'other-window)
 
 ;; semantic / CEDET
-(semantic-mode 1)
+(semantic-mode nil)
 (setq semantic-default-submodes
       '(global-semantic-decoration-mode
         global-semanticdb-minor-mode
@@ -80,10 +76,15 @@
 (show-paren-mode t)
 
 ;; set solarized theme by default
-(disable-theme 'zenburn)
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-solarized-light)
+(set-frame-parameter nil 'background-mode 'dark)
+(set-terminal-parameter nil 'background-mode 'dark)
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (set-frame-parameter frame
+                                 'background-mode
+                                 'dark)
+            (enable-theme 'solarized)))
+(load-theme 'solarized t)
 
 ;; use spaces for TABs
 (setq-default indent-tabs-mode nil)
@@ -153,15 +154,15 @@
       (beginning-of-buffer (goto-char (point-min))))))
 
 ;; syntax checking with flycheck
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;;(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; jedi mode
 (autoload 'jedi-setup "jedi" nil t)
 (add-hook 'python-mode-hook 'jedi-setup)
 
-;; auto-complete
-(require 'auto-complete)
-(global-auto-complete-mode t)
-(provide '.emacs)
+;; auto-complete - use company instead
+;; (require 'auto-complete)
+;; (global-auto-complete-mode t)
 
-;;; .emacs ends here
+(provide 'deepak)
+;;; deepak ends here
