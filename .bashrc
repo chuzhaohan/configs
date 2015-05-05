@@ -26,8 +26,7 @@ HISTFILESIZE=5000
 export GPGKEY=1DEDB5C3
 export PYTHONPATH=
 export TERM=xterm
-#export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf/:~/ROMS/runs/eddyshelf/scripts/:~/ROMS/runs/eddyshelf/topoeddy/:~/ROMS/
-export CDPATH=.:~:~/Data/Work/:~/Data/Work/ROMS/runs/:/:$CDPATH
+export CDPATH=.:~:~/ROMS/runs/:~/ROMS/runs/eddyshelf/:~/ROMS/runs/eddyshelf/scripts/:~/ROMS/runs/eddyshelf/topoeddy/:~/ROMS/
 export PATH=/home/deepak/:/usr/local/texlive/2014/bin/x86_64-linux/:$PATH
 export MANPATH=/usr/local/texlive/2014/texmf-dist/doc/man:$MANPATH
 export INFOPATH=/usr/local/texlive/2014/texmf-dist/doc/man:$INFOPATH
@@ -161,7 +160,7 @@ Host="\h"
 
 # bash prompt colors
 #PS1='\[\e[0;32m\]\u\[\e[m\]@\h: \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]$(__git_ps1) \$\[\e[m\] '
-export PS1="┌──"$IBlack$Time24h$Color_Off\ $Green$User$Color_Off@$Host'$(git branch &>/dev/null;\
+export PS1="┌──"$White$Time24h$Color_Off\ $Green$User$Color_Off@$Host'$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
   echo "$(echo `git status` | egrep "nothing (added )?to commit" > /dev/null 2>&1; \
   if [ "$?" -eq "0" ]; then \
