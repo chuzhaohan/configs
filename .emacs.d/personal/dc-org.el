@@ -54,7 +54,7 @@
 ;; #+LATEX_HEADER. set jobname so that it opens the pdf. %b command
 ;; found in ox-latex.el
 (setq org-latex-pdf-process
-      '("tail -n +3 %f > %f.nolines; PATH=/usr/local/texlive/2014/bin/x86_64-linux/:$PATH latexmk -pdflatex=xelatex -jobname=%b -gg -pdf %f.nolines"))
+      '("tail -n +3 %f > %f.nolines; PATH=/usr/local/texlive/2014/bin/x86_64-linux/:$PATH latexmk -pdflatex=xelatex -jobname=%b -gg -pdf %f.nolines; exiftool -overwrite_original -Producer=`git log -n 1 --pretty=%H` %b.pdf"))
 ;;(setq org-latex-pdf-process
 ;;      '("PATH=/usr/local/texlive/2014/bin/x86_64-linux/:$PATH latexmk -pdflatex=xelatex ;;-gg -pdf %f")
 
