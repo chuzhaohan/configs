@@ -36,6 +36,9 @@
 ;; delete selection works
 (delete-selection-mode 1)
 
+;; wrap lines
+(visual-line-mode t)
+
 ;; Return gives both newline and indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
@@ -53,7 +56,7 @@
 ;;(ido-mode t)
 
 ;; semantic / CEDET
-(semantic-mode 1)
+(semantic-mode nil)
 (setq semantic-default-submodes
       '(global-semantic-decoration-mode
         global-semanticdb-minor-mode
@@ -80,8 +83,9 @@
 (show-paren-mode t)
 
 ;; set solarized theme by default
-(disable-theme 'zenburn)
-(set-frame-parameter nil 'background-mode 'light)
+;;(set-frame-parameter nil 'background-mode 'dark)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/personal/emacs-color-theme-solarized/")
+(add-to-list 'default-frame-alist '(background-mode . light))
 (load-theme 'solarized t)
 
 ;; use spaces for TABs

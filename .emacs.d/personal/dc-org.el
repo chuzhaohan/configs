@@ -21,6 +21,19 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 (setq org-log-done t)
+(setq org-catch-invisible-edits t)
+
+(defun headline-numbering-filter (data backend info)
+  "No numbering in headlines that have a property :numbers: no"
+  (let* ((beg (next-property-change 0 data))
+         (headline (if beg (get-text-property beg :parent data))))
+    (if (and (eq backend 'latex)
+             (string= (org-element-property :NUMBERS headline) "no"))
+        (replace-regexp-in-string
+         "\\(part\\|chapter\\|\\(?:sub\\)*section\\|\\(?:sub\\)?paragraph\\)"
+         "\\1*" data nil nil 1)
+      data)))
+(setq org-export-filter-headline-functions '(headline-numbering-filter))
 
 ;; Originally taken from Bruno Tavernier: http://thread.gmane.org/gmane.emacs.orgmode/31150/focus=31432
 ;; but adapted to use latexmk 4.20 or higher.
@@ -55,8 +68,9 @@
 ;; found in ox-latex.el
 (setq org-latex-pdf-process
       '("tail -n +3 %f > %f.nolines; PATH=/usr/local/texlive/2014/bin/x86_64-linux/:$PATH latexmk -pdflatex=xelatex -jobname=%b -gg -pdf %f.nolines; exiftool -overwrite_original -Producer=`git log -n 1 --pretty=%H` %b.pdf"))
+
 ;;(setq org-latex-pdf-process
-;;      '("PATH=/usr/local/texlive/2014/bin/x86_64-linux/:$PATH latexmk -pdflatex=xelatex ;;-gg -pdf %f")
+;;'("PATH=/usr/local/texlive/2014/bin/x86_64-linux/:$PATH latexmk -pdflatex=xelatex ;;-jobname=%b -gg -pdf %f; exiftool -overwrite_original -Producer=`git log -n 1 ;;--pretty=%H` %b.pdf"))
 
 (defun my-auto-tex-parameters ()
   "Automatically select the tex packages to include."

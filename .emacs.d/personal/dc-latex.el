@@ -3,6 +3,9 @@
 ;; - Deepak Cherian
 
 ;;; Code:
+(setq TeX-engine 'xetex)
+(setq-default TeX-PDF-mode t)
+
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
@@ -14,9 +17,16 @@
 
 (setq TeX-source-correlate-method 'synctex)
 
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/texlive/2014/bin/x86_64-linux/"))
+(setq exec-path (append exec-path '("/usr/local/texlive/2014/bin/x86_64-linux/")))
+
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
-(setq TeX-PDF-mode t)
+
+(add-hook 'LaTeX-mode-hook
+          (lambda ()
+            (font-lock-add-keywords nil
+                                    '(("\\(\\\\block\\)\\s-*{" 1 font-lock-warning-face t)))))
 
 (setq TeX-output-view-style
       (quote
