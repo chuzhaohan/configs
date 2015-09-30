@@ -1,0 +1,120 @@
+
+* TODO Move latex file to this
+
+* Outstanding questions:
+   - [ ] What does change in S_slope do?
+   - [ ] What about change in S_shelf?
+   - [ ] Diagnose non-dim paramters once eddy center crosses slopebreak
+   - [X] Does the addition of friction change fluxes? - YES
+   - [X] Are the frictional cyclones filled with shelf or slope water? - SHELF
+   - [ ] Do I expect the water to be dragged from closer to the shelfbreak with friction?
+   - [ ] What is the relation between the eddy velocity scale and it's trajectory viz.,
+     loopiness.
+   - [ ] ew-25
+
+** transport calculation issues?
+   - [ ] what do I do about all the secondary cyclones in the domain?
+   - [ ] Why is there a non-zero volume of exported shelf water in the beginning?
+   - [ ] Why does the exported shelf water volume decrease later on?
+   - [ ] non-zero fluxes at t=0?
+
+* topoeddy runs
+** Addition of linear drag
+   - I see creation of cyclones even when no cyclones were created in the
+   inviscid run.
+   - Magnitude of rdrg doesn't change diagnostics by too much
+   - Amount of eddy water on shelf is a lot smaller but other water mass diagnostics
+     are very similar
+   - Fluxes are smaller when compared to inviscid runs by about half
+   - the inviscid runs manages to pull water that is farther away from the shelfbreak
+     when compared to the runs with drag. This is surprising
+
+** Variation in Rossby Number
+*** Does Ro affect penetration?
+   It's hard to see if Ro makes a difference in the level to which eddies get closer.
+   For Ro < 0.1 (ew-04, ew-03), ew-03 gets closer. But once you form cyclones, then
+   the track gets "sinusoidal" and tends to get closer with each bump.
+
+*** Does Ro affect fluxes?
+    Yes! higher Ro leads to higher fluxes as expected.
+
+** Variation in slope burger number
+
+* Formation of cyclones
+** Dewar & Hogg hydraulic jump
+  No evidence of this yet.
+  runs.tempvelsec will plot near bottom along-shelf velocity and overlay
+  temperature contours. I don't see the compression neck that they do.
+
+** Stretching of shelf water
+  Definitely see cyclones formed with shelf water. Vertical extent of cyclones
+  seems to be about shelfbreak depth. I haven't verified that vortex stretching is
+  really why these cyclones are formed. Integrated vorticity budget to shelfbreak depth
+  is probably the most reasonable way of doing this.
+
+** Friction
+   They contain shelf water.
+
+   
+* Committee meeting outline
+   * Numerical issues
+     - Show free-surface OBC problem (1 plot)
+     - vertical velocity noise problem
+       - solved by increasing vertical resolution and
+       - mixing along s-surfaces required because noise is 8-10 dx in horizontal
+         so mixing along geopotential will not solve the problem.
+       - show before / after plot
+         
+   * What do I do about eddy vertical structure?
+     - plot showing vertical scale v/s time for one run with
+       topo and other with flat bottom
+     - show comparison of line W cruise data to baroclinic mode structure
+       
+   * Describe parameters that I've varied
+     Ro, slope burger number, depth of shelfbreak
+     
+   * 2 videos of cross-shelf dye and vorticity
+     - run1 = without shelf-water cyclone formation
+     - run2 = with shelf-water cyclone formation
+     - Things to point out
+       - complicated evolution on beta plane = lots of secondary eddies
+       - formation of shelfwater cyclones
+       - export of eddy water onto shelf
+
+   * What causes cyclone formation?
+     - Stretching of shelfwater
+       - deep shelfbreak, large Ro eddy
+     - Bottom friction
+
+   * Vorticity budget for 2 runs (with and w/o bottom friction)
+     illustrating contribution of stretching and bottom friction
+     to cyclonic vorticity generation. (2 plots)
+     Maybe a map of bottom friction contribution to vorticity budget, right
+     when cyclone is formed? (1 plot)
+   
+   * Discuss scaling the bottom boundary condition and the parameter in
+     LaCasce(1998)
+
+   * Plot average transport as function of Ro, slope burger number, shelfbreak.
+     First two are grouped in LaCasce(1998) parameter. (2 subplots)
+
+   * Where is the shelfwater extracted from for the above parameters? Implications of
+     having no background velocity? (2 subplots)
+
+   * Export of eddy water onto the shelf and formation of
+     barotropic anticyclones (2-3 plots)
+     - haven't looked at this in much detail, so just illustrate that it's happening
+
+   * How close does the eddy get to the shelfbreak?
+     Plot average isobath location of eddy center near the end.
+     Again, show variation with parameters. ( 2 plots)
+
+   * Goals for the next 6 months
+     - complete runs without shelfbreak front
+     - List parameters still to be varied
+       shelf slope, eddy dia/slope width etc.
+     - First paper
+       - Interaction of eddies with topography
+       - aim to explain what controls the exchange of eddy and shelf/slope waters
+         across the shelfbreak.
+     - hopefully poster at AGU fall meeting.

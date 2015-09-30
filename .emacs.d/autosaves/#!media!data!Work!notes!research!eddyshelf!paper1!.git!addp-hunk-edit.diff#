@@ -1,0 +1,18 @@
+# Manual hunk edit mode -- see bottom for a quick guide
+@@ -265,2 +267,1 @@
+ 
+-Applying this scaling to the model output requires the diagnosis of a point in the eddy's trajectory where its cross-isobath translation velocity has been considerably reduced i.e., this isobath is where angular momentum and form stress are of similar magnitude. The hyperbolic tangent fit described in Section [[sec:trackdesc]] is used to locate this point (indicated by crosses in Figure [[fig:centrack]]). Figure [[fig:penerf]] shows the scaling in ([[eq:erfparam]]). The $y$ axis is the LHS of ([[eq:erfparam]]) calculated using $H$ at the locations marked by crosses in [[fig:centrack]]. The error bars indicated _scatter_ calculated using the RMSE of the fit, ([[eq:tanhfit]]) -- an error in diagnosed location, $δy$, results in an error in water depth, $δH$. The gray dashed line is a linear fit to these points (without accounting for the scatter). The agreement is reasonable and illustrates that the isolation constraint is a significant control on the evolution of the eddy. More direct evidence is seen when looking at the time evolution of the eddy's integrated potential and kinetic energies (Figure [[fig:energy]]) for a lot of eddies. The cross indicates the time, $t-t_\text{ref} = T$ i.e., the time at which the eddy is at the location marked by a cross in Figure [[fig:centrack]]. There is a sharp change in slope at this instant, showing a strong decrease in radiative energy loss from the eddy.
+
+
+ 
+ #+NAME: fig:energy
+ #+CAPTION: Integrated energy in the eddy as defined in ([[eq:edden]]). The cross marks the same time instant as the crosses in Figure [[fig:centrack]], i.e., the point at which cross-isobath translation is substantially reduced. This is at $t - t_\text{ref}=T$, where $T$ is defined using the $\tanh$ fit in [[eq:tanhfit]]
+# ---
+# To remove '-' lines, make them ' ' lines (context).
+# To remove '+' lines, delete them.
+# Lines starting with # will be removed.
+#
+# If the patch applies cleanly, the edited hunk will immediately be
+# marked for staging. If it does not apply cleanly, you will be given
+# an opportunity to edit again. If all lines of the hunk are removed,
+# then the edit is aborted and the hunk is left unchanged.

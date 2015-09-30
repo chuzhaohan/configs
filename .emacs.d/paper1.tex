@@ -1,0 +1,495 @@
+
+
+%&/media/data/Work/tools/latex/preamble-memoir
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setromanfont[Ligatures=TeX]{TeX Gyre Pagella}
+\setmathfont[math-style=ISO,bold-style=ISO,vargreek-shape=TeX]{TG Pagella Math}
+\setmonofont{Inconsolata}
+\newcommand\Hsb{H_\text{sb}}
+\newcommand\tnd{t_\text{nd}}
+\newcommand\bt{_\text{bot}}
+\newcommand\ppx{\pp{}{x}}
+\newcommand\ppy{\pp{}{y}}
+\newcommand\ppt{\pp{}{t}}
+\newcommand{\alert}[1]{\textbf{#1}}
+\setsecnumdepth{subsubsection}
+\counterwithout{section}{chapter}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\setcounter{secnumdepth}{2}
+\author{D.A. Cherian}
+\date{\today}
+\title{Cross-isobath translation of nonlinear eddies over steep topography}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 24.3.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+\begin{abstract}
+Can continental slope-like topography prevent a deep-water eddy from reaching the shelfbreak? The extent to which an eddy can penetrate the continental slope is expected to influence how much water it can transport across the shelfbreak. The study is motivated by observations of Gulf Stream warm core rings translating near the shelfbreak off the northeastern United States. A series of numerical experiments wherein a surface-intensified anticyclonic eddy interacts with idealized shelf-slope bathymetry is used to answer the question.
+
+When the eddy's diameter is about the width of the slope or wider, its edge always gets to the shelfbreak. Then the controlling parameter is the ratio of shelfbreak depth to eddy vertical scale. When the eddy is much deeper than the shelfbreak (warm core ring limit), it cannot cross onto the shelf. Instead, it moves parallel to the shelfbreak, driving a significant offshore flux of sshelf water and slowly leaking its own mass onto the slope. As the shelfbreak depth is increased, the topography acts increasingly like a ridge and causes dramatic eddy splitting across the shelfbreak.
+
+When the eddy's radius is small compared to the slope width, the cross-isobath motion of the eddy can be eventually arrested over the slope. In this case, the governing parameter is the ratio of planetary beta to topographic beta. The eddy evolves to a quasi-equilibrium state where bottom form stress on the eddy balances its integrated angular momentum ($β$ force). Then, as predicted by the theorem of Flierl, Stern \& Whitehead (1983), the eddy loses energy at a much slower rate to wave radiation and translates approximately parallel to an isobath.
+\end{abstract}
+
+\section{Introduction}
+\label{sec-1}
+\subsection{General introduction}
+\label{sec-1-1}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\textwidth]{./images/wcr-avhrr-label.png}
+\caption{\label{fig:WCRSST}AVHRR SST image showing the Gulf Stream and a warm core ring (WCR). The ring is drawing a cold streamer of shelf water across the shelfbreak into deep water.}
+\end{figure}
+
+Mesoscale eddies are found everywhere in the ocean. They move primarily westwards \citep{Chelton2011}; and eventually, some of them must come up against the continental margins or mid-ocean ridges and seamounts. What happens then? The question has motivated many studies. These can be classified into three types viz., eddies interacting with western boundaries (vertical walls and shelf-like topography), eddies interacting with ridges and seamounts, and the behaviour of eddies over slopes.
+\subsection{Eddies and western boundaries}
+\label{sec-1-2}
+\label{sec:introboundary}
+The prime reason for studying the eddy-western boundary problem is to understand the impact of eddy-continental shelf interactions on shelf water budgets. For example, in the Mid-Atlantic Bight, \citet{Lentz2010} estimates that an onshore salt flux of \SI{7e-3}{\kilogram\per\square\metre\per\square\second} across the shelfbreak (\SI{100}{m} isobath) is required to explain observed mean salinity gradients. Hypothesized causes for such a flux are many: instability of shelf edge currents, exchange by offshore eddies, penetration of strong offshore currents etc. \citep[see][]{Brink1998}. Here, the focus is on eddy induced exchange.
+
+The Gulf Stream meanders and sheds warm core rings (WCRs) which move westward and hit the continental slope (henceforth, the slope). Thereafter, the rings move southwestwards parallel to the shelf-break, advecting cold, fresh shelf water offshore across the shelfbreak (Figure \ref{fig:WCRSST}) and pushing warm, salty Gulf Stream water onto the shelf \citep{Lee2010}. There are many observations of these fluxes \citep[for e.g.,][]{Houghton1986,Garfield1987,Joyce1992, Lee2010, Cenedese2013}. Similar behaviour has also been observed in the Gulf of Mexico \citep{Frolov2004}, the Gulf of Alaska \citep{Okkonen2003, Ladd2007}, the Mozambique channel \citep{Roberts2014}, off the Spanish coast \citep{Peliz2004}, in the Black Sea \citep{Shapiro2010, Zhou2014} and the Bering Sea \citep{Mizobata2006}. Recent work off Greenland has also documented analogous exchange, termed "spilling events", of dense shelf water across the East Greenland shelfbreak caused by bottom intensified cyclones \citep{Magaldi2011, Harden2014}.
+
+Motivated by these observations, previous research has focused on three questions: how does the eddy translate during and after the impact; how does its shape adjust to the presence of the topography; and what circulation patterns result? Briefly, the eddy has been seen to move either in the Kelvin wave direction; in the opposite direction (possibly due to the image effect); or not at all. Investigators have also noted a tendency for the eddy to leak mass along the boundary.
+
+\subsubsection*{Interactions with vertical wall}
+\label{sec-1-2-1}
+\label{sec:introwall}
+Initial studies of these questions looked at the interaction of eddies with vertical walls over a flat bottom; with particular focus on the along-wall translation of the eddy after the impact. \citet{Nof1988} was the first to show that during the interaction, eddies leak fluid along the wall. Just as for a rocket, this leakage to the topographic west "pushes" the eddy along the wall to the topographic east: hence the term, "rocket effect". The numerical experiments in \citet{Shi1993} exhibited the same behaviour. \citet{Shi1994} found that an initially circular eddy transformed into a D-like shape, termed "wodon\footnote{wall + modon}", as its streamlines adjusted to the presence of a wall: a quasi-geostrophic (QG) representation of the image effect. Yet, \citet{Nof1999} found that in a reduced gravity model, non-linear zero potential vorticity (PV) lenses did not move meridionally at all after interacting with a western wall. Instead, that eddy continuously moved into the wall while simultaneously losing mass from its core. For more details, the reader is referred to the excellent summary and analysis in \citet{Nof1999}.
+\subsubsection*{Shelf-like topography modelling}
+\label{sec-1-2-2}
+\label{sec:introshelf}
+With the addition of shelf-slope like topography, the evolution becomes more complicated. The advection of fluid across isobaths spins up secondary cyclones, in both near-surface and deep layers. These cyclones then interact with the original eddy, forming a dipolar system, resulting in a complicated looping trajectory. Further, intuition based on the behaviour of vortices on a $β$ plane (in a barotropic system, shallow water corresponds to higher PV) suggests that anticyclones will move towards the \emph{topographic} south-west, i.e., repelled away from the slope to deeper water and cyclones will move towards the \emph{topographic} north-west, i.e., attracted by the slope to shallower water. Investigators have also noted the excitation of topographic waves during the interactions; studied in more detail by \citet{Louis1982} using theory and observations, and by \citet{Shaw1991} and \citet{Wang1992} using numerical models.
+
+\citet{Chapman1987} used a superposition of linear waves to model the eddy as a linear, translating pressure disturbance. The eddy structure was not allowed to evolve in time. They found a bottom-intensified narrow jet along the shelfbreak directed downstream in the coastal trapped wave sense (i.e., moving such that shallow water is on the right in the northern hemisphere). \citet{Kelly1988} observed similar behaviour with a steady, linear and dissipative model. \citet{Wang1992} described extensive barotropic and contour-dynamical numerical experiments of an anticyclone interacting with step topography. His findings, for example, the spinup of secondary cyclones and the excitation of topographic waves, have held true for all succeeding studies. These findings will be described in Section \ref{sec:modelrun}.
+
+Quite a lot of work has used two layer models. These works have mostly focused on describing the evolution of flow patterns; the subsequent trajectory of the eddy and its speed of propagation. \citet{Sutyrin2003}, using an intermediate equation two layer model with a western coast and slope confined to the lower layer, showed that when the shelfbreak is deep enough, the eddy can cross the shelfbreak onto the shelf. Subsequently, the eddy moved \emph{northward} when close to coastal wall, as expected from the image effect. Both \citet{Frolov2004} and \citet{Sutyrin2010} used an intermediate equation two layer model that lets the topography (again, western coast) penetrate into the upper layer. The former study used two active layers while the latter used only one. Interestingly, both papers show the anticyclone moving \emph{southward} after collision with a western shelf-slope boundary. They claimed that if the topography is confined to the lower layer, then the image effect dominates vortex translation. \citet{Sutyrin2003} found that the effectiveness of the image effect depended on the width of the shelf: runs with shelves wider than an eddy radius exhibit weaker image effect-like behaviour. The implication is that the steep slope doesn't induce an image effect but the \emph{coastal wall} does. All of the above studies also described decay due to Rossby wave radiation.
+
+Comparatively less work has utilized continuously stratified models but in general, insights from simplified models like \citet{Wang1992} still apply. \citet{Oey2004} initialized their anticyclone over a slope and observed a bottom-intensified slope jet similar to that noted in \citet{Chapman1987}. They also noted secondary cyclones around the eddy. Both \citet{Hyun2008} and \citet{Wei2009} started their eddies in deep water and described the subsequent evolution as the eddy interacted with the slope.
+\subsection{Eddies v/s ridges}
+\label{sec-1-3}
+\label{sec:introseamount}
+The second class of studies looks at the collision of eddies with mid-ocean ridges and seamounts. This is motivated mainly by two sets of observations: collisions of Aghulas rings with Walvis ridge in the south-eastern Atlantic \citep[for e.g.,][]{Baker-Yeboah2010} and the collision of Meddies\footnote{Mediterranean eddies} with mid-ocean seamounts \citep{Richardson2000}.
+
+The focus in this paper is on a related question: when can an offshore eddy penetrate on to the shelf? Literature studying the interaction of an eddy with a ridge is thus, more relevant. \cite{Kamenkovich1996} conducted two layer, primitive equation simulations where an eddy collided with a mid-ocean ridge (confined to the lower layer). They found that baroclinic eddies could cross the ridge but more barotropic eddies could not. On crossing the ridge, eddies tended to become more baroclinic or compensated, i.e., almost no flow in the lower layer. Eddies were also seen to intensify right before crossing the ridge. \cite{Beismann1999} extended these results by varying the geometry of the ridge using a two layer QG model. They again find that only eddies with deep structure interact with the ridge, and upon crossing it, the eddy becomes compensated. If an eddy evolves to a state of deep compensation and then encounters the ridge, it crosses it with almost no modification. They were limited by the ability of a QG model to represent steep and tall ridges.
+
+\begin{itemize}
+\item \citet{Adams2010} were interested in the transport of larvae between hydrothermal vents. These are generally found in ridge systems that are oriented meridionally.
+\begin{itemize}
+\item Tehuantepec eddies v/s East Pacific Rise
+\item Found enhanced tracer dispersal along ridge-axis - good for larvae dispersal to other vents
+\item Linear wave theory shows that barotropic Rossby waves tend to reflect back at the ridge, while baroclinic waves cross it.
+\end{itemize}
+
+\item This limit is also one where step-like topography might be relevant.
+\begin{itemize}
+\item Point vortices
+\item \cite{Wang1992}
+\end{itemize}
+\item van Geffen papers
+\item \citet{ZavalaSanson2002}
+\begin{itemize}
+\item barotropic cyclones moving towards ridge
+\item sees splitting across thin ridges.
+\item $β_r > β_p$ unlike van Geffen papers where $β_p < β_r$
+\end{itemize}
+\item Laboratory simulations: brief mention? - not really relevant?
+\begin{itemize}
+\item \citet{Adduce2004} - splitting up of barotropic vortices
+\item \citet{Cenedese2002} - barotropic vortices with cylinders
+\item \citet{Cenedese2013} - with shelfbreak current, not relevant to this study
+\item \citep{Carnevale1988, Carnevale1991} - barotropic vortices
+\end{itemize}
+\end{itemize}
+\subsection{Eddies over slopes}
+\label{sec-1-4}
+\label{sec:introslope}
+The third class of studies comprises those that look at the evolution of eddies over slopes -- sometimes, infinite. These have focused on wave radiation dispersing the vortex structure. In this set, the topography is confined to the lower layer. \citet{Smith1983} were among the first to study the problem with a two layer non-linear model. They suggest that the behaviour of barotropic vortices over topography on a $β$-plane can be predicted as the vector resultant of the self-advection tendencies of the eddy due to planetary beta ($β$)  and topographic beta ($β_t \sim f_0/H\, ∇H$). \citet{Grimshaw1994} also conducted two layer simulations and found that the eddy initially tended to move towards a topographic south-west. After day one, the eddy was seen to radiate a lot of its energy as coastally trapped waves. \citet{LaCasce1998} explored the problem with a two layer quasi-geostrophic (QG) model with a sloping bottom on an $f$ plane. He found that over gentle slopes (high Rhines number, $U_2/β_tL^2$), the eddy moved towards the topographic south-west, whereas, over steep slopes, the lower layer signal radiated away as topographic Rossby waves leaving behind an upper layer eddy that was not influenced by the bottom. He concluded that the results of \citet{Smith1983} held over gentle slopes but not over steep ones \citep[see also][]{LaCasce1996}. \citet{Thierry1999} used a two layer model to evaluate when reduced gravity models are appropriate. They found that this approximation worked well over steep slopes i.e., when the lower layer radiates away.
+
+\citet{Jacob2002} undertook a detailed exploration of the problem using a two layer primitive equation model studying four slope orientations (coasts at the north, south, east and west) with $β≠0$. When the eddy had significant lower layer flow, they explained their results as being a consequence of the competition between $β$ and $β_t$. If $β_t$ is in the same sense as that of $β$ (northern coast), then the eddy loses a large amount of energy to radiation and moves southwestward geographically. If they oppose each other (southern coast), they observed self-advection governed by the greater of $β$ and $β_t$, as predicted by \citet{Smith1983}. Interestingly, when $β≈-β_t$, they noted very little meridional translation. Their eddy's Rhines number was $\sim \mO(25)$, which puts it in the weak slope self-advection regime of \citet{LaCasce1998}. For compensated eddies, they find that the "evolution is minimally influenced by topography", agreeing with \citet{Smith1983} and \citet{Kamenkovich1996}.
+
+\subsection{Scope of this paper}
+\label{sec-1-5}
+To understand the contribution of offshore-eddy driven fluxes to the net shelfbreak exchange problem, we need to know how close the eddy gets to the shelfbreak. Specifically, is there a regime where an eddy can be prevented from completely crossing the slope?
+
+Imagine a surface-intensified deep-water anticyclonic eddy (say, created by the instability of a western boundary current) migrating towards the continental slope. Assuming that the \emph{initial} bottom velocity signal is very small, the deep-water eddy should behave as on a flat bottom $β$ plane and move south-westwards. If this motion results in it crossing isobaths, eventually the water depth will decrease enough that the deep velocity signal will be substantial i.e., in some sense, the eddy is now more barotropic. The two layer model results described in Section \ref{sec:introslope} suggest that if the slope is steep, this deep signal of the eddy should continually radiate away. This would then indicate that the slope does not continue to oppose the cross-isobath motion of the eddy and that the eddy will eventually reach the shelfbreak, driving significant fluxes across it. \emph{However}, if the deep velocity becomes large enough as the eddy moves into shallower water, perhaps the the offshore self-advection tendency of the eddy over the topographic $β$ plane will prevent further cross-isobath motion\footnote{For anticyclones over topography with western and eastern coasts, this would also indicate motion away (i.e., repulsion) from the shelfbreak.}. This was observed in the $β=-β_t$ case (southern coast; their experiment B4) of \citet{Jacob2002}. It is difficult, \emph{a priori}, to decide which of these two outcomes hold true when a surface intensified eddy moves across isobaths in a continuously stratified model. Will these two layer ideas extend to a stratified system?
+
+Using fully non-linear, continuously stratified simulations, I will show that there is a regime where topography can arrest the cross-isobath motion of an eddy. I will also derive a scaling that predicts the water depth at which this arrest happens. For simplicity, the presence of a shelfbreak front is ignored here.
+\section{Problem setup}
+\label{sec-2}
+I will use an idealized configuration of the Regional Ocean Modeling System \citep{Shchepetkin2005}. The model solves the equations:
+\begin{align}
+\label{eq:eqroms}
+    u_t + uu_x + vu_y + wu_z - fv &= \frac{1}{ρ_0}  p_x + τ^x_z + A_H (u_{xx} + u_{yy}) + \left(A_v u_{z}\right)_z \\
+    v_t + uv_x + vv_y + wv_z + fu &= \frac{1}{ρ_0}  p_y + τ^y_z + A_H (v_{xx} + v_{yy}) + \left(A_v v_{z}\right)_z \\
+    0 &= p_z - ρg \\
+    u_x + v_y + w_z &= 0 \\
+    ρ_t + uρ_x + vρ_y + wρ_z &= κ_H\left(ρ_{xx} + ρ_{yy} \right) + \left(κ_vρ_z\right)_z
+\end{align}
+
+The main elements of the problem viz., shelf-slope topography, anticyclonic eddy, and ambient stratification, are all reduced to the simplest possible form.
+
+The topography is constructed using three straight lines representing the shelf, the continental slope and the deep ocean respectively. This allows easy control of the topographic slopes for both the continental shelf and slope. The deep ocean is always flat. A four point running mean is used six times to smooth the intersection of these lines at the shelfbreak and slopebreak. The term "slopebreak" will refer to the intersection of the continental slope and the flat bottomed deep ocean.
+
+The eddy is prescribed as a radially symmetric, surface intensified, Gaussian temperature anomaly superimposed on background stratification ($\bar{ρ}(z)$) according to
+\begin{equation}
+\label{eq:tanom}
+T_\text{edd} = T_\text{amp} \exp{\left[-(r/R)^2 - (z/L_z)^2\right]}
+\end{equation}
+
+The horizontal length scale, $R$ is specified and the vertical scale, $L_z$, is determined as $L_z = fR/N$. Cyclo-geostrophic balance is used to determine the velocity field by prescribing zero velocity at the bottom. For most of the runs described here, the ambient buoyancy frequency ($N^2$) is constant. Results using an exponential ambient $N^2$ profile in Section \ref{sec:N2}.
+
+The eddy is initially located in deep water far enough from the topography (Figure \ref{fig:yzplot}) that its initial evolution is similar to that over a flat bottomed ocean\footnote{verified using a flat bottom simulation}. The intent here is to have our artificially prescribed eddy adjust to the $β$-plane in deep water (as compared to eddy vertical scale) before it starts interacting with the continental slope. When the slope is much wider than the eddy, the eddy is started at the edge of the slope to reduce integration time. In all other cases, the eddy starts in deep water approximately one deformation radius away from the slopebreak.
+
+Anticyclonic eddies move southwestward when placed on a β-plane \citep{McWilliams1979, Nof1983, Early2011}. So, the topography is placed at either the western or southern boundary of the domain. In this manner, the eddy moves across isobaths without a cross-isobath background flow. Most experiments described here use topography with a southern coast. Since the sense of planetary and topographic betas are both zonal, the system so configured is possibly easier to examine. Section \ref{sec:west} examines the problem with a western coast. The south-westward motion means that for the other two slope orientations (viz., eastern and northern coasts), the eddy will move away from the shelfbreak. This is not of interest here.
+
+The coastal boundary (either the south or west) is a free-slip wall. The other three boundaries are open. Boundary conditions used at these open boundaries are an explicit Chapman condition for the free-surface, a modified Flather boundary condition \citep{Mason2010} for 2D momentum and a combined radiation-nudging \citep{Marchesiello2001} condition for tracers and 3D momentum. To prevent noise at the open boundary from contaminating the solution, we use sponge layers -- \SI{50}{km} (40 points) wide regions with lateral Laplacian viscosity linearly increasing from 0 to \SI{50}{\square\metre\per\second} and lateral Laplacian diffusivity increasing from 0 to \SI{5}{\square\metre\per\second} -- as damping.
+
+A biharmonic lateral viscosity (\SI{3e8}{\metre^4\per\second}) and diffusivity (\SI{8e4}{\metre^4\per\second}) along s-surfaces is used to control noise outside the sponge layers. For computational efficiency, a hyperbolic tangent function is used to stretch the grid spacing near the sponge layers at the open boundaries. The grid spacing in $x$ and $y$ varies between \SI{1}{km} and \SI{1.9}{km}. Experiments with a \SI{750}{m} grid show no difference in the diagnostics used.  Runs with and without this stretching also showed no difference in our diagnostics. In the vertical, there are 72 grid points distributed such that vertical grid spacing is smallest near the surface and largest near the bottom. A density Jacobian based algorithm \citep{Shchepetkin2003} is used to reduce pressure gradient error\footnote{ROMS option \texttt{DJ\_GRADPS}}.
+
+For diagnostic purposes, we initialize the domain with two passive tracers. One is a dye tracking 'eddy water' (red in Figure \ref{fig:xyplot}). To do this, a passive tracer is initialized with value 1 where the temperature anomaly is greater than some small value (see Figure \ref{fig:xyplot}). In practice, not all of the dye with value 1 is carried with the eddy, but this conservative initial distribution lets us identify an eddy core that transports mass over long spatial and time scales (Figure \ref{fig:xyplot}). The second dye is initialized such that each water parcel is tagged with its initial latitude. This acts as a Lagrangian label \citep{Cervantes2004} and lets us trace "shelf water" - defined as water parcels that initially start south of the shelfbreak, "slope water" - parcels that are initially between the shelf- and slopebreak and "deep water" - parcels that are north of the slopebreak.
+\section{Typical model run}
+\label{sec-3}
+\label{sec:modelrun}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=\textwidth]{./images/paper1/xymap.png}
+\caption{\label{fig:xyplot}Snapshots of the surface vorticity field (normalized by $f$) and passive tracers used to track "eddy water" (red) and "shelf/slope water" (blue) at $t = 0$ and $t = \SI{344}{days}$. The black contour is the zero relative vorticity contour, used here to track the \emph{core} of the eddy (see Section \ref{sec:diag}). Depth contours are also marked. Note eddy water (red dye) leaking from the core (see Section \ref{sec:modelrun}) along the shelfbreak and cross-isobath transport of shelf/slope water. This is the leakage described in \cite{Shi1993}. The sheets of vorticity eventually roll up into many small anticyclonic vortices at the shelfbreak. Sponge regions are excluded.}
+\end{figure}
+
+When the model is integrated, initially  the anticyclonic eddy radiates internal waves as it adjusts in deep water. It begins to move westwards and southwards as it spins up $β$-gyres \citep{Sutyrin1994, Early2011} and radiates Rossby waves \citep{Flierl1984, Flierl1994, Chassignet1991, Jacob2002}. Eventually, after about 60 days, it crosses the slope-break and interacts with the sloping topography. Distortions in the shape of the eddy appear as its streamlines adjust to the presence of the boundary (Figure \ref{fig:xyplot}). This is reminiscent of the wodon shape in the quasi-geostrophic results of \citet{Shi1994}. The eddy moves westwards (or upstream in the coastal-trapped wave sense; topographic east), as expected from the rocket and image effects \citep{Nof1999}. Analogous behaviour was noted for a western coast by \cite{Wei2009}. Since $β/β_t \sim \SI{e-2}{}$, at first glance, this contradicts the results of \citet{Jacob2002} and \citet{Smith1983}, who predict motion to the topographic west. The eddy's cross-isobath progress is arrested when its shore-ward (southern) edge reaches the shelfbreak and it then moves upstream (westwards) with its center roughly following the same isobath. The interaction is dramatic: filaments of shelf water are forcefully pulled offshore (see blue dye in Figure \ref{fig:xyplot}) -- in some cases, these form cyclones that are flung eastwards by the eddy \citep[also described by][]{Wang1992, Sutyrin2003, Oey2004, Wei2009} ; and the eddy intermittently loses mass from its core -- a leakage \citep{Shi1993, Nof1999, Wei2009} that takes the form of many small vortices moving eastwards (downstream in the coastally-trapped wave sense) towards the open eastern boundary. This leakage is visible at the surface (Figure \ref{fig:xyplot}), contrary to the speculation of \citet{Nof1999}. The along-isobath translation velocity of the eddy increases as it loses mass from the core, as expected from the rocket effect. Interactions of the shelf/slope water cyclones and the big eddy sometimes (Figure \ref{fig:centrack}) result in a looping motion of the eddy center \citep[see also ][]{Frolov2004, Sutyrin2010}.
+
+The behaviour described above is typical. Over wider and gentler slopes, the eddy takes a lot longer to reach the shelfbreak. There is generally less leakage from the eddy's core. This will be discussed in more detail in Section \ref{sec:south}.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{./images/paper1/yzsection.png}
+\caption{\label{fig:yzplot}$y$-$z$ section of eddy density anomaly ($ρ - \bar{ρ}(z)$) through the eddy's center at $t=0$ and $t=344$ days. The red contour indicates edge of eddy water as tagged by the red dye in Figure \ref{fig:xyplot}. The dashed black line shows the diagnosed vertical scale of the eddy. The black contour is the density anomaly contour used to identify the \emph{core} of the eddy (Section \ref{sec:diag}).}
+\end{figure}
+\section{Non-dimensional parameters and diagnostics}
+\label{sec-4}
+\subsection{Eddy tracking and diagnostics}
+\label{sec-4-1}
+\label{sec:diag}
+The eddy is tracked using the method described in \citet{Chelton2011} with slight modifications appropriate for the much easier task of tracking a single large anticyclone in a numerical simulation. This method detects a simply connected region within a closed SSH contour containing a SSH maximum (or minimum for a cyclone). Within this SSH contour, a closed contour with zero relative vorticity at the surface (i.e., contour of maximum velocity) is defined as the \emph{core} of the  eddy. As in \citet{Early2011}, this zero vorticity contour well represents mass (dye) that is transported by the eddy (see black contour in Figure \ref{fig:xyplot}). A density anomaly (with respect to background stratification) associated with this zero vorticity contour at $t=0$ is used to identify the eddy's core in three dimensions (see black contour in Figure \ref{fig:yzplot}). This method successfully tracks dyed water that is transported in the eddy throughout the simulation.
+
+Empirically, I find that using the vorticity contour to define the eddy is more robust than the SSH contour because the latter confuses Rossby wave signals with the eddy signal and identifies a much larger area than is seen to transport dyed water over long times. However, the edges of the vorticity contour are sensitive to eddy splitting (as part of the leakage described in Section \ref{sec:modelrun}).
+
+The eddy's center is defined as the location of the SSH maximum within the detected vorticity contours. A Gaussian fit to the vertical profile of the temperature \emph{anomaly} at the eddy's center is used to diagnose its vertical scale $L_z$. This agrees well with the 3D structure of the density anomaly contour described earlier. The eddy's radius ($R$) is defined as the radius of a circle having the same area as that enclosed by the zero relative vorticity contour. This corresponds to the diagnostic $L_s$ in \citet{Chelton2011}. The eddy's velocity scale, ($U$), is defined as the mean of the velocity values on the identified zero relative vorticity contour. Finally, the eddy's potential and kinetic energies are calculated as
+\begin{equation}
+\label{eq:edden}
+\text{PE} = \iiint (ρ-\bar{ρ}(z))gz\, \dr V, \quad \text{KE} = \iiint \frac 12 ρ\left(u^2 + v^2\right) \, \dr V.
+\end{equation}
+The volume of integration is the 3D density anomaly contour (black contour in Figure \ref{fig:yzplot}) that describes the core of the eddy. The volume is also limited in the horizontal by the zero relative vorticity contour at the surface i.e., the black contour in Figure \ref{fig:xyplot}. This avoids integrating over the leakage which contains eddy water and satisfies the density anomaly criterion but is no longer part of the actual eddy.
+
+\subsection{Non-dimensional numbers}
+\label{sec-4-2}
+\label{sec:nondim}
+Using the detected zero relative vorticity contour, the eddy's Rossby and Rhines numbers are defined as
+\begin{equation}
+\label{eq:nondim}
+\Ro = \left ⟨ \frac{v_x - u_y}{f} \right ⟩, \; \quad \; \Rh = \frac{U}{βR²}
+\end{equation}
+where, $⟨⟩$ represents an area average at the surface, $f(y)$ is the Coriolis parameter (generally around \SI{5e-5}{\per\second} here); planetary $β = \dr f/\dr y$ and $U, R$ are the velocity and length scales of the eddy as defined in the previous section. Typical values for a Gulf Stream warm core ring are $\Ro \sim 0.12$ \citep{Olson1991} and $\Rh \sim 12$. In the rest of the ocean, observed rings have $\Ro \sim 0.05 \text{--} 0.20$ \citep{Olson1991}. There is an upper bound on the Rossby number for an anticyclonic ring. Cyclo-geostrophic balance in radial co-ordinates results in a quadratic equation for the velocity field. For real solutions, the Rossby number calculated using a \emph{geostrophic} velocity must be less than 0.25. When calculated as in (\ref{eq:nondim}), the upper limit is around 0.3; the cyclostrophic term causing the difference. This corresponds to a maximum $(v_x-u_y)/f$  of 1 somewhere within the eddy.
+\section{Results}
+\label{sec-5}
+\subsection{Can sloping topography stop an eddy from crossing it?}
+\label{sec-5-1}
+\label{sec:south}
+\subsubsection*{General description}
+\label{sec-5-1-1}
+\label{sec:trackdesc}
+The goal is to understand whether the shoreward edge of the eddy's core can reach the end of the slope. Here, all simulations have a shelf, and so, the question becomes: can sloping topography prevent the water in the eddy's core from reaching the shelfbreak? There is nothing special about the shelf-break here other than that it represents the end of the slope.
+
+Figure \ref{fig:centrack} shows tracks of the eddy's center (SSH maximum) for multiple runs.  Co-ordinates of the center are relative to the eddy's initial location in $x$ and the shelf-break location in $y$. The axes are normalized by the eddy's initial radius. If, in Figure \ref{fig:centrack}, the center reaches a $y$ location that is one eddy radius away from the shelfbreak (gray dashed line), then the southern edge of the eddy' core has reached the shelfbreak. Using the center location as a diagnostic is more robust than using the southern edge of the contour because it avoids ambiguity associated with the contour chosen by the algorithm when the eddy splits as part of the leakage. However, tracks of the eddy center are sensitive to the Rhines number of the eddy in the following manner: lower $\Rh$ eddies radiate more energy and spin down faster. As part of the spin down, the eddy's horizontal and vertical scales decrease \citep{Flierl1984}. So if two eddies with different $\Rh$ both reach the shelfbreak, one will have lesser radius than the other and its center will seem to have penetrated more when presented in Figure \ref{fig:centrack}. To avoid this, the eddies have $\Rh \sim 12$ (typical warm core ring value) in most of the runs here. Exceptions will be pointed out later.
+
+Bottom slope, slope width and eddy Rossby numbers were all varied to produce the tracks in Figure \ref{fig:centrack}. The cross on each track in Figure \ref{fig:centrack} represents the location at which the eddy's cross-isobath translation has decreased significantly. This location will be used later to verify a proposed scaling. To diagnose this, I fit the function,
+\begin{equation}
+\label{eq:tanhfit}
+y - y_\text{ref} = y_0 \tanh{\left(\frac{t-t_\text{ref}}{T}\right)} + y_1 \left(\frac{t - t_\text{ref}}{T}\right),
+\end{equation}
+to the eddy center latitude for each run. The location of the eddy at $t - t_\text{ref} = T$ then gives us the location at which the cross-isobath motion has been considerably reduced. In most cases (refer to tracks), this happens when the eddy's edge has reached the shelfbreak, which, if not deep enough (see Section \ref{sec:sb}), acts like a vertical wall. However, one particular eddy seems to have been stopped quite far away. This happens in the limit where the eddy's horizontal scale is smaller than the slope's width; a regime where the two layer results of \citet{LaCasce1998} and \citet{Jacob2002} might be expected to apply.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{./images/paper1/centrack.pdf}
+\caption{\label{fig:centrack}Will the eddy always reach the shelfbreak? These are tracks of the eddy center for four runs with different values of $R/L_{sl}$, i.e, (slope width)/(eddy radius). $x$ and $y$ axes are relative to the eddy's initial location and location of the shelfbreak respectively and both axes are normalized by the initial radius of the eddy. If, on this plot, the eddy's center gets to $y=1$, its edge is at the shelfbreak. In two cases, the eddy is stopped away from the shelfbreak, while in the other two, the eddy's edge gets to the shelfbreak. Dots, marked every 75 days, indicate a slowdown of cross-isobath motion in these two cases. The cross indicates the location parameterized by (\ref{eq:erfparam}). The open circle marks the point where the eddy crosses the slopebreak, i.e., from the flat bottomed deep ocean to the continental slope.}
+\end{figure}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{./images/paper1/sl-centrack.pdf}
+\caption{\label{fig:sl-centrack}Does the system care about isobath orientation? Eddy center tracks for southern and western coasts when the slope width, $L_{sl}$, is much larger than eddy scale, $R$ i.e., ($L_\text{sl} ≫ R$). Axes are normalized as in Figure \ref{fig:centrack}. Lines with the same color in both plots represent the same (non-dimensional) eddy. Note how two eddies slow down significantly far away from the shelfbreak with the southern coast but reach the shelfbreak much quicker with a western coast (see \ref{sec:west}).}
+\end{figure}
+
+\begin{table}[htb]
+\caption{\label{tab:runs}Parameters for runs. (needs to be significantly improved)}
+\centering
+\begin{tabular}{llrrllrrr}
+\hline
+Coast & Name & Ro & Rh & $β$ (\SI{}{\per\metre\per\second}) & $β_t$ (\SI{}{\per\metre\per\second}) & $R$ (km) & $L_z$ (m) & $R/L_{sl}$\\
+\hline
+Southern & ew-6341 & 0.08 & 11.99 & \num{1.1e-11} & \num{1e-9} & 25 & 394 & 0.45\\
+ & ew-6441 & 0.11 & 63.72 & \num{3e-12} & \num{1e-9} & 25 & 394 & 0.45\\
+ & ew-6362-2 & 0.27 & 11.95 & \num{1.1e-10} & \num{1e-9} & 12 & 196 & 0.21\\
+ & ew-64361 & 0.27 & 62.43 & \num{1.2e-11} & \num{6.25e-10} & 20 & 316 & 0.34\\
+\hline
+Western & ns-6341 & 0.08 & 11.76 & \num{1.1e-11} & \num{1e-9} & 25 & 394 & 0.45\\
+ & ns-6441 & 0.11 & 65 & \num{3e-12} & \num{1e-9} & 25 & 394 & 0.45\\
+ & ns-6362-2 & 0.27 & 13.04 & \num{9e-11} & \num{1e-9} & 12 & 196 & 0.21\\
+ & ns-64361 &  & 61.75 & \num{1.2e-11} & \num{6.25e-10} & 20 & 316 & 0.34\\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection*{Eddy scale < slope width}
+\label{sec-5-1-2}
+\paragraph*{Theory}
+\label{sec-5-1-2-1}
+As described in Section \ref{sec:introslope}, the two layer model results lead us to believe that for steep enough slopes, the lower layer signal will radiate away and the eddy should continually translate across isobaths as long as slope width is not a factor. The track with $L_\text{edd} < L_\text{sl}$ (slope wider than eddy; the two northernmost tracks) in Figure \ref{fig:centrack} indicates that this is not always the case. This run is an approximation to the infinite slope limit of \citet{LaCasce1998} and \citet{Jacob2002}.
+
+The two layer studies indicate that understanding the nature of wave radiation from eddies is crucial to understanding the translation of eddies over slopes. The integrated angular momentum theorem (henceforth, the theorem) of \citet{Flierl1983} which predicts when radiation from the eddy is possible is thus, a suitable starting point. Briefly, if a spatially-confined structure (e.g., an eddy) satisfies the conditions of the theorem, then it will remain \emph{isolated} i.e., spatially confined, and \emph{slowly varying} i.e., its structure will not change significantly because only a small amount of energy is transferred to the wave field. If its structure (vertical scale) is slowly varying, it will be hard for the eddy to cross into shallower water -- a \SI{400}{m} scale eddy cannot cross into water of \SI{300}{m} without losing some of its mass.
+
+The short derivation presented here closely follows that in \citet{Flierl1983} and \citet{Flierl1987}. First, integrate the horizontal momentum and continuity equations in (\ref{eq:eqroms}) between two material surfaces ($\int$), $z=s_0(x,y,t)$ to $z=s_1(x,y,t)$. Then, integrate the momentum equations over the entire $x-y$ plane ($\iint$), use the definition of a material surface\footnote{$w(x,y,s_i,t) = \left(∂_t + u∂_x + v∂_y\right)_{s_i} s_i$} and Leibniz's rule to get \citep{Flierl1987}
+\begin{subequations}
+\label{eq:int}
+\begin{align}
+\ppt \left(s_1 - s_0\right) + \ppx \int u + \ppy \int v &=0 \\
+\iint \ppt \int u + \iint \ppx \int u^2 + \iint \ppy \int uv - \iint f\int v &= -\iint \ppx \int p + \iint \left(p_{1}s_{1x} - p_{0}s_{0x} \right) \\
+\iint \ppt \int v + \iint \ppx \int uv + \iint \ppy \int v^2 + \iint f\int u &= -\iint \ppy \int p + \iint \left(p_{1}s_{1y} - p_{0}s_{0y} \right)
+\end{align}
+\end{subequations}
+
+No approximations have been used to obtain (\ref{eq:int}). For simplicity, the $1/ρ_0$ term has been absorbed into $p$. Using Gauss' theorem,
+\begin{equation}
+\label{eq:gauss}
+\iint \ppy \int p = \oint \left(\int p \right)\cdot\hat{n}\,\dr{l},
+\end{equation}
+where $\dr{l}$ is along a bounding contour far away from the eddy, and $\hat{n}$ is the unit vector normal to that contour. Here, we are concerned with eddy-like \emph{isolated} structures that are confined spatially and that do not radiate energy to this bounding contour i.e., boundary contributions to the integrals in (\ref{eq:int}) are zero. Then, the RHS contour integral in (\ref{eq:gauss}) will be zero. The same argument holds for the integrated non-linear terms as well. The simplified set of integrated equations for such isolated structures are
+\begin{subequations}
+\label{eq:simp}
+\begin{align}
+\ppt \left(s_1 - s_0 \right) + \ppx \int u + \ppy \int v &=0 \\
+\ppt \iiint u - f_0 \iiint v - β \iint y\int v &= \iint \left(p_{1}s_{1x} - p_{0}s_{0x} \right) \\
+\ppt \iiint v + f_0 \iiint u + β \iint y\int u &= \iint \left(p_{1}s_{1y} - p_{0}s_{0y} \right).
+\end{align}
+\end{subequations}
+
+This expresses the integrated force balance on the fluid parcels bounded by the two material surfaces. At this point, we must choose our bounding material surfaces.  Choosing them to be the upper and lower boundaries of the fluid and making the rigid lid approximation ($s_1 = 0, s_0 = -H(x,y)$) lets us define a transport streamfunction $ψ$ such that
+\[ \int u = - ψ_y; \quad \int v = ψ_x. \]
+
+For an eddy-like structure, $ψ$ must decay quickly. \emph{Assuming} that this decay is $\mO (1/r^2)$ means $\iint ψ_y = \oint ψ\cdot\hat{n}\dr{l} = 0$. Also assuming that $ψ_t$ decays as $\mO(1/r^2)$ i.e., that the eddy is \emph{slowly varying} \citep{Flierl1983}, results in the following simplified balance:
+\begin{subequations}
+\label{eq:fsw}
+\begin{align}
+0 &=  \iint p_0 \pp Hx \\
+β \iint ψ &=  \iint p_0 \pp Hy. \label{eq:fswy}
+\end{align}
+\end{subequations}
+
+Equation (\ref{eq:fsw}) is a statement about the integrated forces on the system (eddy \emph{and} topography). The first term in \eqref{eq:fswy}, termed the $β$ force \citep{Nof1983}, arises because $f$ is different on the northern and southern sides of the eddy. If the eddy is symmetric, then the Coriolis force on the northern side is greater than that on the southern side. The first term is the net resultant of these two forces. The second term is the form stress on the bottom of the eddy i.e., the topography is pushing the eddy away.
+
+Over a flat bottom, the original theorem put forward in \citet{Flierl1983} viz., $β \iint ψ = 0$, is recovered. If $β\iint ψ ≠ 0$, then the $β$ force is unbalanced.  Thus, any \emph{initially} isolated structure that has net angular momentum, like our anticyclone, \emph{must} radiate waves and set up boundary contributions to the integrals in (\ref{eq:simp}) so that it is satisfied \citep{Flierl1987}. For all runs here, the eddy is initially prescribed to be surface intensified with no bottom velocity (or pressure) signal. So, the eddy radiates Rossby waves as it moves south-westward in deep water.
+
+As the eddy crosses the slope into shallower water, the bottom pressure anomaly increases. Physically, the topography opposes the cross-isobath motion of the eddy via an increasing form stress at the bottom of the eddy, causing a decrease in meridional translation velocity. As time progresses, the eddy's angular momentum will slowly decrease (it is continuously losing energy to radiation) and the bottom pressure anomaly will increase to a point where an approximate balance between the $β$ force and the form stress is possible. \emph{If} this happens, the system is now isolated and the radiation of energy from the eddy will be significantly reduced, halting the spin-down of the eddy. The decay in eddy's vertical scale is then arrested, preventing it from crossing isobaths until some other mechanism by which it can lose mass (for e.g., the leakage or instability) kicks in.
+
+There is no reason to expect the balance between the $β$ force and form stress to hold exactly. The eddy initially loses energy to Rossby waves prior to reaching this \emph{critical} water depth. This means that when integrated to the edge of the domain (sponge layer), the boundary contributions to the integrals are non-zero. Further, the generation of cyclonic features \citep[for e.g.,][]{Wang1992, Oey2004,Frolov2004} due to cross-slope advection of water will also complicate the integrated momentum balance of the entire domain. Here, I argue that if the terms in \eqref{eq:fswy} are of the similar magnitude, then the system is quasi-isolated and the eddy's core now acts like a coherent structure, with very slow radiative energy loss. The cross-isobath motion is then significantly arrested because the eddy's vertical scale cannot decrease quickly enough to reduce the opposing form stress.
+
+An important point is that \eqref{eq:fswy} is a necessary but not sufficient condition. \citet{Flierl1983} demonstrated this by deriving additional conditions for a barotropic QG system. Satisfying these additional conditions means that the boundary contributions will be even smaller than if only \eqref{eq:fswy} was satisfied. So, we must only expect the rate of energy radiation to decrease significantly and not become zero.
+\paragraph*{Scaling}
+\label{sec-5-1-2-2}
+Directly diagnosing the balance in \eqref{eq:fswy} turns out to be quite hard. Integrating to the domain boundary does not work because of the initially radiated Rossby waves. Instead, assuming the balance holds, we can scale both terms in \eqref{eq:fswy} to arrive at a relationship and see whether that results in a useful prediction. For velocity scales $U_s$ (surface) and $U_b$ (bottom), vertical scale $L_z$, horizontal scale $R$ and assuming equal areas of integration at the surface and bottom $A$,
+\begin{equation}
+\iint β ψ \sim β U_s R L_z A; \quad \iint p\bt s_{0y} = \pp Hy f_0 U_b R A.
+\end{equation}
+
+Using thermal wind balance and assuming that the eddy's density anomaly remains Gaussian in the vertical throughout the evolution gives us an expression for the vertical profile of horizontal velocity:
+\begin{equation}
+U(z) = U_s \left[ 1 - \erf{\left( \frac{z}{L_z^0} \right)}\right] ⇒\frac{U_b}{U_s} = 1 - \erf{\left(\frac{H}{L_z^0}\right)},
+\end{equation}
+where $H$ is the water depth at the eddy center and $L_z^0$ is the initial vertical scale of the eddy. Then, our predicted relationship for the water depth $H$ at which we expect the eddy to slow down significantly is
+\begin{equation}
+\label{eq:erfparam}
+1 - \erf{\left(\frac{H}{L_z^0}\right)} \sim \frac{β}{\frac{f_0}{L_z^0} \pp Hy} \sim \frac{β}{β_t},
+\end{equation}
+with topographic beta defined as $β_t = f_0/L_z^0 H_y$.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{./images/paper1/penetration-res-param.pdf}
+\caption{\label{fig:penerf}\citet{Flierl1983} based scaling for isobath $H$ at which the eddy's cross-isobath motion is appreciably reduced. The location is marked by a $\times$ in Figures \ref{fig:centrack} and  \ref{fig:sl-centrack}. All these runs have (slope width) > (eddy width). The unlabeled black crosses are model runs with anticyclones, constant $N^2$ and east-west isobaths. Those labeled $N^2$ have depth-varying $N^2(z)$ (Section\ref{sec:N2}) and those marked with 'C' are runs with cyclones (constant $N^2$; Section \ref{sec:cyc}). The dashed gray line is the linear fit shown in (\ref{eq:erfparam}).}
+\end{figure}
+
+Applying this scaling to the model output requires the diagnosis of a point in the eddy's trajectory where its cross-isobath translation velocity has been considerably reduced i.e., this isobath is where angular momentum and form stress are of similar magnitude. The hyperbolic tangent fit described in Section \ref{sec:trackdesc} is used to locate this point (indicated by crosses in Figure \ref{fig:centrack}). Figure \ref{fig:penerf} shows the scaling in (\ref{eq:erfparam}). The $y$ axis is the LHS of (\ref{eq:erfparam}) calculated using $H$ at the locations marked by crosses in Figure \ref{fig:centrack}. The gray dashed line is a linear fit to these points. Given the caveats described earlier, the agreement is reasonable and illustrates that the isolation constraint is a significant control on the evolution of the eddy.
+
+More favourable evidence is found when looking at the time evolution of the eddy's integrated potential and kinetic energies (see \ref{eq:edden} and Figure \ref{fig:energy}) for a lot of eddies. The cross indicates the time, $t-t_\text{ref} = T$ i.e., the time at which the eddy is at the location marked by a cross in Figure \ref{fig:centrack}. There is a sharp change in slope at this instant, showing a strong decrease in radiative energy loss from the eddy, consistent with the hypothesis. There is still non-zero energy loss from the eddy that can be rationalized with the caveats mentioned earlier. One, the hypothesized balance assumes that the flow field contains \emph{only} the eddy. A look at \ref{fig:xyplot} shows that this is not true. Two, \cite{Flierl1983} show that the theorem is a necessary but not sufficient condition for wave radiation, at least for the barotropic QG equations. Thus, the eddy should continue radiating at a slower pace after the hypothesized balance is approximately achieved. The sharp drops in energy at later times in some of the runs occurs when the eddy splits or gets close to the sponge layer.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{./images/paper1/energy-decay.pdf}
+\caption{\label{fig:energy}Integrated energy in the eddy as defined in (\ref{eq:edden}). The '$\times$' marks the same time instant as the crosses in Figure \ref{fig:centrack}, i.e., the point at which cross-isobath translation is substantially reduced. This is at $t - t_\text{ref}=T$, where $T$ is defined using the $\tanh$ fit in \texttt{eq:tanhfit. The topmost line is for a run with \$$\backslash$Rh $\backslash$sim 65\$ and the rest are for \$$\backslash$Rh $\backslash$sim 12\$.}}
+\end{figure}
+
+\paragraph*{Two layer results}
+\label{sec-5-1-2-3}
+Can the theorem be used to rationalize the two layer results of \citet{LaCasce1998} and \citet{Jacob2002}? \cite{Flierl1994} derived a version of the \citet{Flierl1983} theorem for a two layer primitive equation system. If the lower layer flow is quasi-geostrophic, the theorem states
+\begin{equation}
+\label{eq:fsw2layer}
+β \bigg ( H_1 \iint ψ_1 + H_2 \iint ψ_2 \bigg) + β_t H_2 \iint ψ_2 = 0
+\end{equation}
+
+Here, $H_i, ψ_i$ are the depth and streamfunction for layer $i$. Again, the interpretation here is that the $β$ force must balance the bottom form stress. In \citet{LaCasce1998}, $β = 0, β_t ≠ 0$ and $H_1 = H_2 = H$; so his barotropic eddies will not remain isolated and are expected to always radiate waves without ever reaching a quasi-isolated state. Indeed, that is what he observed over steep slopes (small $\frac{U_2}{β_2L^2}$). The lower layer energy radiated away leaving behind a surface intensified vortex. However, over \emph{gentler} slopes (large Rhines number, $\frac{U_2}{β_2L^2}$), he noted translation towards the topographic "south-west" i.e., non-linear self-advective behaviour.
+
+How can this be reconciled? Even though the theorem tells us that the eddy must radiate waves, it does not tell us how quickly the eddy's energy will radiate away. \citet{LaCasce1998} shows that this is governed by a lower layer Rhines number ($\frac{U_2}{β_2L^2}$) and \citet{Flierl1984} derived a dependence on $βL/f_0$ for an eddy on a $β$ plane over a flat bottom. So, for an eddy to lose energy to radiation, not only must the flow field of the eddy not satisfy the theorem, but the background PV gradient must also be strong enough to allow strong radiation. This idea will be useful when we look at a system with a western coast in Section \ref{sec:west}.
+
+\citet{Jacob2002} reported intriguing behaviour observed in their two layer, primitive equation simulations (their Figure 18). In their base case\footnote{their eddy B4} with $H_1/H_2 = 1/4$, $β = \SI{2e-11}{\per\metre\per\second}$, $β_t = \SI{-2.5e-11}{\per\metre\per\second}$ and $ψ_1/ψ_2 = 3$; the eddy moved along-isobath westward and very slightly southward with very little radiation. When $β_t$ was halved, the eddy moved southward and when $β_t$ was doubled, the eddy moved northward. In all three cases, the theorem is not exactly satisfied. However, the differences can be interpreted using the ideas discussed earlier. Since this is the same eddy initialized in the same location, changing $β_t$ changes the \emph{initial} form stress on the eddy. This explains the direction of motion i.e., northward when $β_t$ greater than $β$ because the form stress is greater than the $β$ force and pushes the eddy away; and vice versa. Further, when $β_t$ is doubled, they observed more radiation from the eddy. This can be explained using a lower layer Rhines number as in \cite{LaCasce1998}: when $β_t$ is doubled, $β_2 = β + β_t = \SI{-3e-11}{\per\metre\per\second}$ and when it is halved, $β_2 = \SI{0.75e-11}{\per\metre\per\second}$. So, as observed, we expect less radiation in the latter case when compared to the former. The upper layer Rhines number remains the same in all three cases, so the lower layer Rhines number must explain the differences.
+\subsubsection*{Eddy scale $≳$ slope width}
+\label{sec-5-1-3}
+The ideas of the previous section should also hold when the eddy's diameter is similar in magnitude or greater than the slope width. However, the areas of integration for the $βψ$ term and the bottom pressure term can be different, because the impact is sideways. In practice though, I find that the eddy's edge always gets to the shelfbreak. The eddy then decays through the leakage described in Section \ref{sec:modelrun}. The more interesting physics in this case is that of offshore and onshore fluxes. This will be addressed in a future paper.
+\subsection{When can an eddy cross the shelfbreak or ridge?}
+\label{sec-5-2}
+\label{sec:sb}
+\textbf{Note:} This section is very incomplete. I'm also not sure if this should be moved to the next chapter.
+
+Here, I ask whether an eddy can cross the shelfbreak and onto the shelf. The question examined in this section is similar to that tackled in \citet{Kamenkovich1996} and \cite{Beismann1999}, where, motivated by Aghulas eddies interacting with Walvis Ridge, they looked at whether eddies could cross a subsurface ridge. Both studies indicated that the vertical scale of the eddy relative to the height of the ridge is of prime importance. So, here the parameter $λ$ will be varied, where
+\[ λ = \frac{\text{Shelfbreak depth}}{\text{Eddy vertical scale}} = \frac{\Hsb}{L_z}\]
+
+To avoid interactions with the coastal wall, the shelf is a lot wider ($\SI{150}{km} \sim 2 \times \text{eddy radius}$) in these runs. The depth of the shelfbreak is varied to vary $λ$. To reduce integration time, the slopes are kept narrow ($\sim$ eddy radius). Upon changing $λ$, the nature of the interaction changes dramatically (see Figure \ref{fig:sbmap})
+\begin{itemize}
+\item When λ \textasciitilde{} 0.1 or 0.25, eddy splits across shelfbreak into smaller eddies
+\item When λ >\textasciitilde{} 0.65, eddy interacts with coastal wall. splits into two
+\item When λ \textasciitilde{} 1, the eddy crosses the shelfbreak without any major splitting and a slight deviation in track.
+\end{itemize}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{./images/paper1/sb-maps.png}
+\caption{\label{fig:sbmap}Can the eddy cross the shelfbreak? Tracers tagging eddy water (red) and shelf/slope water (blue) illustrate wildly different behaviour when varying λ = (shelfbreak depth)/(eddy depth scale). For a shallow shelf, the eddy leaks in a manner similar to that seen with vertical walls and as shown in Figure \ref{fig:xyplot}, where $λ = 0.10$. For deeper shelves, the eddy tends to split into multiple eddies; each bigger that the eddies that form the leakage in the earlier case. When the shelfbreak is as deep as the eddy, the eddy crosses over onto the shelf completely. The black contour is the core of the eddy and the black line shows the track of the eddy's center.}
+\end{figure}
+
+\subsubsection*{Goals}
+\label{sec-5-2-1}
+\begin{itemize}
+\item How much of the eddy's core volume penetrates onto the shelf given an eddy vertical scale and shelfbreak depth? When framed like this, the question is about flux of eddy water onto the shelf.
+\begin{itemize}
+\item Distinguish between parent eddy being offshore but dumping more water on shelf v/s parent eddy crossing shelfbreak.
+\end{itemize}
+\item Compare against \emph{two layer} \citet{Kamenkovich1996} study and \citet{Adams2010}
+\begin{itemize}
+\item Barotropic eddies don't cross it. - I see this
+\item Intensification of eddy amplitude (due to squashing?) - when crossing. - haven't looked
+\end{itemize}
+\item The question is whether the eddy's vertical scale is O(shelfbreak depth) when it reaches there (again, decay through radiation) as noted by \cite{Beismann1999}.
+\begin{itemize}
+\item Scaling for decay in eddy's vertical scale as it transits slope.
+\end{itemize}
+\end{itemize}
+\subsection{Summary}
+\label{sec-5-3}
+It is important to distinguish between the eddy being stopped by the slope (Flierl, Stern, Whitehead result) and it being stopped at the shelfbreak because it cannot physically cross over. There is nothing dynamically special about the shelfbreak; it is the end of the slope.
+\section{Robustness of results}
+\label{sec-6}
+\subsection{Western coast}
+\label{sec-6-1}
+\label{sec:west}
+With a western coast ($H_x ≠ 0, H_y = 0$), (\ref{eq:fsw}) results in two conditions,
+\begin{equation}
+\iint ψ = \iint p_{0} = 0,
+\end{equation}
+as was discussed in \citet{Flierl1987}. For the system to evolve to a quasi-isolated state, the eddy would have to remain surface intensified \emph{and} spin up a cyclone of equal strength. It seems reasonable to expect the second condition to be hard to satisfy. So, the eddy is expected to always lose energy and eventually get to the shelfbreak. In fact, that is what we see in Figure \ref{fig:sl-centrack}, with two exceptions. These exceptional runs have $\Rh \sim 65$, while the rest have $\Rh \sim 12$ (defined using planetary $β$). Thus, as was rationalized earlier for the two layer model results, the effectiveness of the radiation is key.
+
+For two runs that differ only in the value of \emph{planetary} $β$, the eddy experiencing larger $β$ will lose energy and spin down much faster, resulting in continuously decreasing vertical scale. Basically, the vertical scale of the eddy decreases faster than the water depth is decreasing due to cross-isobath translation. When viewed in the two layer framework, continuous radiation to planetary $β$ prevents the lower layer Rhines number from ever increasing\footnote{due to increasing velocity signal at the bottom} to a point where topographic radiation might be prevented i.e., planetary $β$ can make a slope look steep in the sense of \citet{LaCasce1998}. Again, the wave radiation from the eddy is the key physics here. Notably, the track colors in Figure \ref{fig:sl-centrack} indicate the same non-dimensional eddy for both isobath orientations. So, eddies that are stopped far away from the shelfbreak in the southern coast run get to the shelfbreak in the northern coast run. This is because the eddies can never evolve to become quasi-isolated for topography with a western coast.
+\subsection{Other parameters}
+\label{sec-6-2}
+\subsubsection*{Non-constant stratification}
+\label{sec-6-2-1}
+\label{sec:N2}
+The background density profile is specified using
+\[ N^2 = N_0^2 \exp{(-z/H_N)} \]
+where $N_0$ is the maximum $N^2$ value and $H_N$ is a vertical decay scale. A minimum value of $N^2=\SI{1e-6}{\per\square\second}$ is imposed. The vertical modes for this $N^2$ profile over a flat bottom are estimated using the algorithm in \citet{Chelton1998}. For these runs, the eddies have a horizontal length scale equal to the first mode baroclinic radius and vertical scale equal to the depth of the zero-crossing of the first baroclinic mode. The green points marked with "$N^2$" in Figure \ref{fig:penerf} are for runs with non-constant $N^2$.
+
+\textbf{Note:} I'm not certain that the point marked on Figure \ref{fig:penerf} is appropriate. More simulations are required.
+\subsubsection*{Cyclones and negative $f$}
+\label{sec-6-2-2}
+\label{sec:cyc}
+The analogous setup for a cyclone is a northern coast since cyclones move north-westward on the β-plane. These runs are marked using "C" in Figure \ref{fig:penerf}. Similarly, runs with negative $f$ are marked using "$f^{-}$". In both cases, there is good agreement with the proposed scaling.
+\subsubsection*{Bottom Friction}
+\label{sec-6-2-3}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{./images/paper1/bfrics-centrack.pdf}
+\caption{\label{fig:bfric-centrack}Does bottom friction make a difference? These are tracks of the eddy center for the same eddy (ew-6341 on Figure \ref{fig:sl-centrack}) but with different linear bottom drag, $r$.}
+\end{figure}
+A linear bottom friction parameterization is used for the bottom stress i.e.,
+\begin{equation}
+\label{eq:bstr}
+A_v \pp vz \Bigg\vert_{z=-H(x,y)} = τ\bt = - r v\bt
+\end{equation}
+
+Integrating the friction term in (\ref{eq:eqroms}) between the two material surfaces, $s_0$ and $s_1$, and over the entire domain gives
+\begin{align}
+\iiint \pp{}{z} A_v \pp vz &= \iint \left(A_v \pp vz \right)_{s_1} - \left(A_v \pp vz \right)_{s_0} \\
+&= \iint τ_{s_1} - τ_{s_0} \\
+&= \iint 0 - rv\bt,
+\end{align}
+after using \ref{eq:bstr}. Assuming that $v\bt$, the velocity above the boundary layer, is in geostrophic balance, makes this term vanish too \citep[see][]{Flierl1983}. Thus, we expect bottom friction to make no difference.
+
+Figure \ref{fig:bfric-centrack} shows otherwise. Visually, the eddy seems to be arrested at the same time in all three runs, though the diagnosed locations (crosses) are slightly different. This shows that the diagnostic used for the scaling (\ref{eq:erfparam}) is sensitive to the rate at which the eddy crosses isobaths \emph{after} its rate of radiation decreases significantly.
+
+\begin{itemize}
+\item \textbf{Note:} Still working on an explanation for this behaviour.
+\end{itemize}
+\section{Discussion}
+\label{sec-7}
+Here, continuously stratified, primitive equation model simulations were used to study the interaction of an eddy with steep shelf-slope topography. This is an extension of the work of \citet{Wang1992}, an exploration of the two layer ideas of \citet{LaCasce1996, Jacob2002} and a more in-depth investigation compared to the work of \citet{Wei2009}.
+\subsection{General observational comparison}
+\label{sec-7-1}
+The small shelf/slope water cyclones are similar to those noted by \citet{Kennelly1985} around the Gulf Stream Warm Core Ring 82B and seen in the Gulf of Mexico \citep{Frolov2004}.
+\begin{itemize}
+\item Signature of leakage in SST images?
+\end{itemize}
+\subsection{Eddy progress over slope}
+\label{sec-7-2}
+This study has shown that for topography with a southern or western coast, the eddy's progress across the slope can be arrested. The key physics is the tendency to radiate waves; which can be diagnosed with these two questions.
+\begin{itemize}
+\item Can the system evolve to become (quasi) isolated in the sense of the \cite{Flierl1983} theorem \emph{before} the eddy reaches the end of the slope?
+\item If not, is the background PV gradient ($β$) strong enough to efficiently remove energy from the eddy?
+\end{itemize}
+When radiation is not possible or inefficient, the eddy's structure remains coherent for a long time, preventing movement into water much shallower than the eddy's vertical scale. The simulations with a southern coast (Section \ref{sec:south}) illustrate the first point and the second is clearly shown by simulations with a western coast (Section \ref{sec:west}). These two ideas can also describe most of the previously observed behaviour over wide slopes, especially the two layer results of \citet{LaCasce1998} and \citet{Jacob2002}.
+
+When starting with surface intensified eddies (bottom velocity $\sim$ 0) as done here, the balance between form stress and the $β$ force tends to occur after quite a long time (more than a year in some cases). However, when the eddy starts with large enough initial bottom pressure anomaly i.e., more barotropic eddies, the critical isobath is reached a lot earlier. Observational evidence suggests that Aghulas rings and Gulf Stream warm core rings have significant bottom pressure anomalies \citep[for e.g. ][]{Kamenkovich1996, Baker-Yeboah2010}. Even so, realistic slopes are never wide enough to see this happen. One might expect these ideas to hold over the wide, sloping shelves, but shelf eddies are too small to feel planetary $β$ i.e., $βL_x/f_0$ is small. Instead, one can ask what the theorem of \citet{Flierl1983} says about shelf eddies. For $β=0$, (\ref{eq:fsw}) shows that for shelf eddies to remain isolated (and live longer) they must have $\iint p\bt ∇H = 0$. For a constant slope, they must remain surface intensified i.e., have no integrated bottom pressure anomaly. This, of course, neglects other non-linear effects such as vortex merger and instability.
+\subsection{Post-impact motion of eddies}
+\label{sec-7-3}
+\label{sec:motion}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{./images/paper1/image-effect.pdf}
+\caption{\label{fig:image}Does the image effect explain along-isobath translation opposite to the Kelvin wave direction? The hypothesis of \cite{Frolov2004} and \cite{Sutyrin2010} is tested by varying the shelf width. For all runs, the eddy's radius is \SI{25}{km}. Addition of the shelf shows a reduction in along-isobath translation velocity of the eddy's center.}
+\end{figure}
+
+\emph{All} conducted simulations with both coastal orientations indicate that post-impact, the eddy moves in the direction predicted by the image and rocket effects. This is to the topographic \emph{east} or opposite to the direction of Kelvin wave propagation. Figure \ref{fig:image} compares the along-isobath ($x$) velocity of the centroid for runs that differ only in shelf width. The eddy's radius is always \SI{25}{km}. There is not much difference in translation velocities for runs with a \SI{20}{km}, \SI{40}{km} and \SI{150}{km} shelf. However, in the \emph{absence} of a shelf (i.e., vertical wall), the eddy moves westwards quite a bit faster. The regular, oscillatory behaviour in this case is due to cyclones being spun up at the wall, possibly due to the hydraulic jump mechanism described in \citet{Dewar2010}.
+
+The time series of eddy core volume in Figure \ref{fig:image} shows that over a flat bottom, the eddy core leaks more mass (momentum). So, in the absence of a shelf, the eddy gets a greater boost in the along-isobath direction \citep{Shi1994}; the rocket effect is stronger without a shelf.
+
+\begin{itemize}
+\item I haven't diagnosed the strength of the image effect.
+\item need to diagnose change in "shape" of eddy.
+\end{itemize}
+
+This behaviour seen here is contrary to the results of \citet{Frolov2004} and \citet{Sutyrin2010}. They hypothesized that the distance to the coastal wall controls the strength of the image effect. They also observed translation to the topographic west, which is \emph{not} seen here.  The experiments described here leaves both results unexplained, possibly due to the inability of their "intermediate" equation model to represent the leakage and hence, the rocket effect, properly.
+
+This study, then, suggests that the rocket effect always governs the direction of along-shore translation, indicating the importance of along-isobath mean flow in driving Gulf Stream warm core rings to the southwest. Indeed, \citet{Cornillon1989} show that in most observations they consider, rings are moving towards west-northwest relative to slope water i.e., either the rings are moving northward or they are moving southwestward but doing so slower than slope water. This study would indicate the former i.e., generally northward motion, as was seen in the numerical experiments of \cite{Wei2009}.
+
+\begin{itemize}
+\item Kuroshio rings move northward?
+\end{itemize}
+\section{References}
+\label{sec-8}
+\bibliographystyle{elsarticle-harv}
+\bibliography{eddyshelf}{}
+% Emacs 24.3.1 (Org mode 8.2.10)
+\end{document}

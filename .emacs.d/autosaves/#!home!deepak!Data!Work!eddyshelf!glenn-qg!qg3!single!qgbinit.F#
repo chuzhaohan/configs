@@ -1,0 +1,100 @@
+        SUBROUTINE QGINIT
+
+#include "qgbcom.f"
+
+        FNK(I)=2.*pi*(I-1)/(nx*dx)
+        FNL(J)=2.*pi*(J-1)/(ny*dy)
+
+
+        pi = 4.*atan(1.0)
+
+c ** Initialize the wavenumbers: KC and LC hold i*k and i*l, respectively
+        kmax2=(nx/2-1)**2
+
+        open(unit=10,file=prefix(1:lnblnk(prefix))//'.qtop',
+     $         form='unformatted',status='old')
+
+        DO I=1,NC
+           RK=FNK(I)
+           KC(I)=(0.0,1.0)*RK
+
+           DO J=1,ny
+              if(j.gt.nc)then
+                 j1=j-nx
+              else
+                 j1=j
+              endif
+              RL=FNL(J1)
+c*  folding here has to do with the aliasing in the transform
+              IF(I.EQ.1) LC(J)=(0.0,1.0)*RL
+              RR=RK*RK+RL*RL
+              Wv(I,J)=RR
+              read(unit=10)((qtop(i,j,m,n),n=1,npsi),m=1,npsi)
+#ifdef FRIC
+              do n=1,ncomp
+                 if(i.eq.1 .and. j1.eq.1) then
+                    if(ipwr(1,n) .eq. 0 .and. fric(1,n) .gt. 0) then
+                       frc(i,j,n)=exp(-fric(1,n)*dt)
+                    else if(ipwr(2,n) .eq. 0 .and. fric(2,n) .gt.0) then
+                       frc(i,j,n)=exp(-fric(2,n)*dt)
+                    else
+                       frc(i,j,n)=1.0
+                    endif
+                 else
+                    FRC(I,J,n)=exp(-fric(1,n)*RR**ipwr(1,n)*dt
+     $                   -fric(2,n)*RR**ipwr(2,n)*dt)
+                 endif
+              enddo
+#endif
+              if(((i-1)**2+(j1-1)**2) .gt. kmax2)then
+                 trunc(i,j)=0.0
+              else
+                 trunc(i,j)=fac
+              endif
+
+           enddo
+	enddo
+        close(unit=10)
+
+c **  Define the filtering function  (alpha defined for DOUBLE precision)
+c ** Use alpha = -18. for double precision
+c ** Use alpha = -18. for single precision
+c        alpha = -18.
+        alpha = -18.
+c ** Use cphi=.65*pi for 64^2,          **
+c **          .69*pi for 128^2,         **
+c **          .715*pi for 256^2         **
+c **          .735*pi for 512^2         **
+
+#if (NG==128)
+        cphi = 0.69*pi
+#elif (NG==256)
+        cphi = 0.715*pi
+#elif (NG==512)
+        cphi = 0.735*pi
+#else
+        cphi = 0.65*pi
+#endif
+c      write(*,*)cphi/pi
+        do j= 1, ny
+           do i= 1, nc
+
+              xphi = dx*imag(kc(i))
+              yphi = dy*imag(lc(j))
+     
+c ** changed filter below to be radially symmetric in wave number space
+              if (sqrt(xphi**2 + yphi**2) .gt. cphi) then
+c              filtr(i,j) = exp( alpha*(sqrt(xphi**2 + yphi**2)-cphi)**8 )
+                 filtr(i,j)=exp(alpha*(sqrt(xphi**2+yphi**2)-cphi)**7)
+              else 
+                 filtr(i,j) = 1.0
+              endif
+           enddo
+	enddo
+
+c ** Initialize NSTEP
+
+        nstep = 0
+
+        return
+        end
