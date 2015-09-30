@@ -156,7 +156,7 @@ Jobs="\j"
 User="\u"
 Host="\h"
 
-# export TERM=xterm-256color
+export TERM=xterm-16color
 
 # bash prompt colors
 #PS1='\[\e[0;32m\]\u\[\e[m\]@\h: \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m\]$(__git_ps1) \$\[\e[m\] '
