@@ -1,15 +1,18 @@
 shell -$SHELL
-term xterm-256color
+term xterm
 
 # status bar
-hardstatus on
-hardstatus alwayslastline
+hardstatus ignore
+#hardstatus alwayslastline
 #hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
 #hardstatus string '%{= kW}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %Y-%m-%d %{W}%c:%s %{g}]'
-hardstatus string '%{= W}%{g}[ %H %{g}][%= %{= k}%?%-Lw%?%{R}(%{k}%n*%f%t%?(%u)%?%{R})%{k}%?%+Lw%?%?%= %{g}][%{B} %Y-%m-%d %{k}%c:%s %{g}]'
+caption always '%{= W}%{g}[ %H %{g}][%= %{= w}%?%-Lw%?%{R}(%{w}%n*%f%t%?(%u)%?%{R})%{w}%?%+Lw%?%?%= %{g}][%{B} %Y-%m-%d %{w}%c:%s %{g}]'
+
+#hardstatus string '%{= W}%{g}[ %H %{g}][%= %{= k}%?%-Lw%?%{R}(%{k}%n*%f%t%?(%u)%?%{R})%{k}%?%+Lw%?%?%= %{g}][%{B} %Y-%m-%d %{k}%c:%s %{g}]'
 
 #zombie ko
-caption always "%{g}[%{d}Status:%{R} %?%h:None%?%{g}]%=[%{R}Load : %l%{g}]"
+#caption always "%{= W}%{g}[%{g}Status:%{R} %?%h:None%?%{g}]%=[%{R}Load : %l%{g}]"
+#caption always "%{= W}"
 
 vbell off 
 autodetach on # screen automatically detaches if connection is cut
@@ -40,11 +43,11 @@ bind ' ' windowlist -b # windowlist to space
 #startup stuff
 startup_message off
 
-screen -t matlab 1
-chdir /home/poison/deepak/ROMS/runs/eddyshelf/
-screen -t ROMS-config 2
-screen -t ROMS-run-1 3
-screen -t ROMS-run-2 4
-screen -t top  0  top
-select 3
+#screen -t matlab 1
+#chdir /home/poison/deepak/ROMS/runs/eddyshelf/
+#screen -t ROMS-config 2
+#screen -t ROMS-run-1 3
+#screen -t ROMS-run-2 4
+#screen -t top  0  top
+#select 3
 
