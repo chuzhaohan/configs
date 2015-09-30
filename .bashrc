@@ -23,6 +23,7 @@ HISTFILESIZE=5000
 # vapor setup
 #. /usr/local/vapor-2.3.0/bin/vapor-setup.sh
 
+source ~/fenics.stable
 export GPGKEY=1DEDB5C3
 export PYTHONPATH=
 export TERM=xterm
