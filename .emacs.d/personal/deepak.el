@@ -36,17 +36,24 @@
 ;; delete selection works
 (delete-selection-mode 1)
 
+;; wrap lines
+(visual-line-mode t)
+
 ;; Return gives both newline and indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; add word count information
-;;(require 'wc-mode)
-;;(global-set-key "\C-cw" 'wc-mode)
+(require 'wc-mode)
+(global-set-key "\C-cw" 'wc-mode)
 
 ;; move ace-window away from C-xo
 (global-unset-key (kbd "\C-x o"))
 (global-set-key (kbd "\M-p") 'ace-window)
-(global-set-key (kbd "\C-xo") 'other-window)
+(global-set-key (kbd "\C-x o") 'other-window)
+
+;; disabled now because prelude has a better version apparently
+;;allows many operations (like buffer switching and file navigation) to be enhanced with instant feedback among the completion choices.
+;;(ido-mode t)
 
 ;; semantic / CEDET
 (semantic-mode nil)
@@ -76,14 +83,9 @@
 (show-paren-mode t)
 
 ;; set solarized theme by default
-(set-frame-parameter nil 'background-mode 'dark)
-(set-terminal-parameter nil 'background-mode 'dark)
-(add-hook 'after-make-frame-functions
-          (lambda (frame)
-            (set-frame-parameter frame
-                                 'background-mode
-                                 'dark)
-            (enable-theme 'solarized)))
+;;(set-frame-parameter nil 'background-mode 'dark)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/personal/emacs-color-theme-solarized/")
+(add-to-list 'default-frame-alist '(background-mode . light))
 (load-theme 'solarized t)
 
 ;; use spaces for TABs
@@ -154,15 +156,15 @@
       (beginning-of-buffer (goto-char (point-min))))))
 
 ;; syntax checking with flycheck
-;;(add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; jedi mode
 (autoload 'jedi-setup "jedi" nil t)
 (add-hook 'python-mode-hook 'jedi-setup)
 
-;; auto-complete - use company instead
-;; (require 'auto-complete)
-;; (global-auto-complete-mode t)
+;; auto-complete
+(require 'auto-complete)
+(global-auto-complete-mode t)
+(provide '.emacs)
 
-(provide 'deepak)
-;;; deepak ends here
+;;; .emacs ends here
