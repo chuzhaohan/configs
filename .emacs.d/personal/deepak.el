@@ -13,6 +13,10 @@
 ;; Disable whitespace mode
 (setq prelude-whitespace nil)
 
+;; smart-mode-line
+(setq sml/theme 'respectful)
+(sml/setup)
+
 ;; share clipboard with X
 (setq x-select-enable-clipboard t
       x-select-enable-primary t
