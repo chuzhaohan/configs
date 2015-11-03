@@ -9,6 +9,8 @@
 (setq org-latex-listings t)
 (setq org-startup-indented t)
 
+(setq org-ellipsis "⤵")
+
 ;; org mode todo faces
 ;;(setq org-todo-keyword-faces
 ;;      '(("TODO" . org-warning) ("STARTED" . "yellow")
