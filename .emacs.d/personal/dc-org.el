@@ -23,7 +23,8 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 (setq org-log-done t)
-(setq org-catch-invisible-edits t)
+(setq org-catch-invisible-edits 'show)
+(setq org-list-allow-alphabetical t)
 
 (defun headline-numbering-filter (data backend info)
   "No numbering in headlines that have a property :numbers: no"
@@ -69,7 +70,7 @@
 ;; #+LATEX_HEADER. set jobname so that it opens the pdf. %b command
 ;; found in ox-latex.el
 (setq org-latex-pdf-process
-      '("tail -n +3 %f > %f.nolines; PATH=/usr/local/texlive/2014/bin/x86_64-linux/:$PATH latexmk -pdflatex=xelatex -jobname=%b -gg -pdf %f.nolines; exiftool -overwrite_original -Producer=`git log -n 1 --pretty=%H` %b.pdf"))
+      '("tail -n +2 %f | sed '/./,$!d' > %f.nolines; PATH=/usr/local/texlive/2014/bin/x86_64-linux/:$PATH latexmk -pdflatex=xelatex -jobname=%b -gg -pdf %f.nolines; exiftool -overwrite_original -Producer=`git log -n 1 --pretty=%H` %b.pdf"))
 
 ;;(setq org-latex-pdf-process
 ;;'("PATH=/usr/local/texlive/2014/bin/x86_64-linux/:$PATH latexmk -pdflatex=xelatex ;;-jobname=%b -gg -pdf %f; exiftool -overwrite_original -Producer=`git log -n 1 ;;--pretty=%H` %b.pdf"))
