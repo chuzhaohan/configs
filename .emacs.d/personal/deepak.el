@@ -41,7 +41,7 @@
 (delete-selection-mode 1)
 
 ;; wrap lines
-(visual-line-mode t)
+(global-visual-line-mode t)
 
 ;; Return gives both newline and indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
@@ -114,6 +114,7 @@
 (require 'pydoc-info)
 
 ;; Setting up writegood-mode
+(add-to-list 'load-path "~/.emacs.d/personal/writegood-mode/")
 (require 'writegood-mode)
 (global-set-key "\C-cg" 'writegood-mode)
 
