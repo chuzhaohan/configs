@@ -3,7 +3,10 @@
 ;; - Deepak Cherian
 
 ;;; Code:
-(setq TeX-engine 'xetex)
+(require 'auctex-latexmk)
+(auctex-latexmk-setup)
+(setq auctex-latexmk-inherit-TeX-PDF-mode t)
+
 (setq-default TeX-PDF-mode t)
 
 (setq TeX-auto-save t)
