@@ -15,6 +15,7 @@
 	ap = add -p
 	unstage = reset HEAD
 	uncommit = reset --soft HEAD^
+        lstags = log --date-order --tags --simplify-by-decoration --pretty=format:'%ci %h %d'
 
 [core]
 	editor = emacsclient -t

@@ -50,5 +50,5 @@ au BufNewFile,BufRead *.h  setfiletype fortran
 
 set bg=dark
 set t_Co=256
-colorscheme gardener
+colorscheme solarized
 
