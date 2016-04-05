@@ -120,6 +120,39 @@
                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 (add-to-list 'org-latex-classes
+             '("ametsoc"
+               "[NO-DEFAULT-PACKAGES]
+\\documentclass{ametsoc}
+\\usepackage{fixltx2e}
+\\usepackage[mathletters]{ucs}
+\\usepackage[utf8x]{inputenx}
+\\usepackage[T1]{fontenc}
+\\usepackage{array}
+\\usepackage{booktabs}
+\\usepackage{multirow}
+\\usepackage{longtable}
+\\usepackage{subfig}
+\\usepackage{float}
+\\usepackage[normalem]{ulem}
+\\usepackage{etoolbox}
+\\usepackage{parskip}
+\\usepackage{paralist}
+\\usepackage{mathtools}
+\\usepackage{siunitx}
+\\usepackage{xfrac}
+\\usepackage{bigints}
+\\usepackage[protrusion=true]{microtype}
+\\sisetup{detect-all = true, separate-uncertainty = true, list-units=single, range-phrase = -- }
+\\bibpunct{(}{)}{;}{a}{}{,}
+[EXTRA]"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
+               ))
+
+(add-to-list 'org-latex-classes
              '("dcbeamer"
                "[NO-DEFAULT-PACKAGES]"
                 ("\\section{%s}" . "\\section*{%s}")
