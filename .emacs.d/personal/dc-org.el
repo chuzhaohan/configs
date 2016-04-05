@@ -27,6 +27,7 @@
 (setq org-list-allow-alphabetical t)
 (setq org-export-in-background nil)
 (setq org-latex-prefer-user-labels t)
+(setq org-latex-tables-booktabs t)
 
 (defun headline-numbering-filter (data backend info)
   "No numbering in headlines that have a property :numbers: no"
